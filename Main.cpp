@@ -27,15 +27,16 @@ int main(int argc, char* args[])
 
 	std::cin >> i;
 
-	return 0;
+	
 	*/
 
-	const int SCREEN_WIDTH = 640;
-	const int SCREEN_HEIGHT = 480;
+	//const int SCREEN_WIDTH = 640;
+	//const int SCREEN_HEIGHT = 480;
 
-	SDL_Window* Window = NULL;
-	SDL_Renderer* Renderer = NULL;
-	SDL_Surface* PrimarySurface = NULL;
+	//SDL_Window* Window = NULL;
+	//SDL_Renderer* Renderer = NULL;
+	//SDL_Surface* PrimarySurface = NULL;
 
 
+	return 0;
 }
