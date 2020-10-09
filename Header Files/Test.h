@@ -1,13 +1,13 @@
 #pragma once
-#include <SDL.h>
-#include <SDL_image.h>
+//#include <SDL.h>
+//#include <SDL_image.h>
 #include <stdio.h>
 
 class Test
 {
 private:
 	// Capture SDL Events
-	void OnEvent(SDL_Event* Event);
+	//void OnEvent(SDL_Event* Event);
 
 	// Initialize our SDL game / app
 	bool Init();
