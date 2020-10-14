@@ -5,26 +5,28 @@
 #include "Physics_Component.h"
 
 
-#include <SDL.h>
-#include <SDL_image.h>
-
 #include <string>
 #include <iostream>
 
 #include "spdlog/spdlog.h"
 
-
+#include "Game.h"
 int main(int argc, char* args[])
 {
+	//return Game::get_instance()->execute(argc, args);
 
+
+	//************************************************************************************
+	// Testing spdlog 
+	/*
 	spdlog::info("welcome to spdlog!");
 	spdlog::error("Some error message with arg: []", 1);
 
 	spdlog::warn("Easy padding in numbers like {:08d}", 12);
 	spdlog::critical("Support for int: {0:d}; hex: {0:x}; oct: {0:o}; bin: {0:b}", 42);
 	spdlog::info("Positional args are {1} {0}..", "too", "supported");
-
-
+	*/
+	//************************************************************************************
 
 
 
