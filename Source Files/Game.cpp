@@ -20,7 +20,7 @@ bool Game::init()
 	}
 	return false;
 
-	if ((window = SDL_CreateWindow(
+	if ((game_window = SDL_CreateWindow(
 		"SDL Game",
 		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WindowWidth, WindowHeight, SDL_WINDOW_SHOWN)
 		) == NULL) 
@@ -31,14 +31,19 @@ bool Game::init()
 
 	//primary_surface = SDL_GetWindowSurface(window);
 
-	if ((renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED)) == NULL) 
+	if ((game_renderer = SDL_CreateRenderer(game_window, -1, SDL_RENDERER_ACCELERATED)) == NULL) 
 	{
 		spdlog::error("Unable to create renderer");
 		return false;
 	}
 
-	SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0xFF);
+	SDL_SetRenderDrawColor(game_renderer, 0x00, 0x00, 0x00, 0xFF);
 
+	if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG))
+	{
+		spdlog::error("Unable to init SDL_image: %s", IMG_GetError());
+	}
+	
 	return true;
 
 }
@@ -52,25 +57,26 @@ void Game::loop()
 
 void Game::render()
 {
-	SDL_RenderClear(renderer);
+	SDL_RenderClear(game_renderer);
 
-	SDL_RenderPresent(renderer);
+	SDL_RenderPresent(game_renderer);
 }
 
 void Game::cleanup()
 {
-	if (renderer) 
+	if (game_renderer) 
 	{
-		SDL_DestroyRenderer(renderer);
-		renderer = NULL;
+		SDL_DestroyRenderer(game_renderer);
+		game_renderer = NULL;
 	}
 
-	if (window)
+	if (game_window)
 	{
-		SDL_DestroyWindow(window);
-		window = NULL;
+		SDL_DestroyWindow(game_window);
+		game_window = NULL;
 	}
 
+	IMG_Quit();
 	SDL_Quit();
 
 }
@@ -96,10 +102,6 @@ int Game::execute(int argc, char* argv[])
 	return 1;
 }
 
-Game* Game::get_instance()
-{
-	return nullptr;
-}
 
 int Game::get_window_width()
 {

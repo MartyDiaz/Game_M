@@ -31,7 +31,9 @@ static constexpr std::size_t max_groups{ 32 };
 using Group = std::size_t;
 using Group_bit_set = std::bitset <max_groups>;
 
+
 class Manager;
+
 class Entity
 {
 

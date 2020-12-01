@@ -1,0 +1,23 @@
+
+11/29/20
+1. Figure out how FileManager and TextureBank should work. 
+	a. Fixed. TextureBank is really good. Possible improvements could be in FileManager - Since Texturebank's only use of filemanager is 
+	to get the file name of a texture to load, does file manager need all the methods it has to get files with or without extensions? 
+	Can't I get exactly what I need? I guess it's good to have, since FileManager could be used for other things, not just texture
+	loading. 
+
+	b. TextureBank's AddTexture method calls new texture, and then the Cleanup method calls delete. Is there a way to make this 
+	a smart pointer? 
+
+	c. TextureBank has an init() method. Can this be put into the constructor? Pass in the renderer and other things it needs?
+
+I. Fixed. Rewrite those FileManger methods using filesystem. 
+	Contructor of Directory_iterator in FileManager::get_files_in_folders can throw error. How to handle this?
+		Handled it with std::error. Bookmarked on google chrome how to do it. 
+		
+		Some Filemanager methods were writter using boost and split. 
+
+11/30/20
+1. Wrote Most if not all Filemanager methods I think.
+2. Tomorrow work on TextureBank and also look into init() or constructor as mentioned above. 
+

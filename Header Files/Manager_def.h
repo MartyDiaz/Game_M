@@ -8,19 +8,10 @@
 
 class Entity;
 
-/*static constexpr std::size_t max_groups{ 32 };
-using Group = std::size_t;
-using Group_bit_set = std::bitset <max_groups>;
-*/
-
 class Manager
 {
 private:
-	/*
-	static constexpr std::size_t max_groups{ 32 };
-	using Group = std::size_t;
-	using Group_bit_set = std::bitset <max_groups>;
-	*/
+	
 	std::vector<std::unique_ptr<Entity>> entities;
 	std::array<std::vector<Entity*>, max_groups> grouped_entities;
 

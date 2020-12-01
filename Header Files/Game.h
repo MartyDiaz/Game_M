@@ -11,13 +11,12 @@
 class Game
 {
 private:
-	static Game Instance;
 
 	bool Running = true;
 
-	SDL_Window* window = NULL;
-	SDL_Renderer* renderer = NULL;
-	SDL_Surface* primary_surface = NULL;
+	SDL_Window* game_window = NULL;
+	SDL_Renderer* game_renderer = NULL;
+	SDL_Surface* primary_game_surface = NULL;
 
 	static const int WindowWidth = 1024;
 	static const int WindowHeight = 768;
@@ -41,7 +40,7 @@ public:
 	int execute(int argc, char* argv[]);
 
 public:
-	static Game* get_instance();
+	
 
 	static int get_window_width();
 
