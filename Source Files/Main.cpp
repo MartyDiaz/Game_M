@@ -2,50 +2,30 @@
 #include "Manager.h"
 #include "Entity.h"
 #include "Component.h"
+#include "spdlog/spdlog.h"
 #include "Physics_Component.h"
-
+#include "File_Manager.h"
 
 #include <string>
 #include <iostream>
 
-#include "spdlog/spdlog.h"
-
-//#include "Game.h"
-
-//Testing get_current_directory
-#include "FileManager.h"
 
 int main(int argc, char* args[])
 {
 	//*******************************************************************************
-	//Testing get_current_directory
+	
 	int i;
-	std::string test;
-	FileManager filemanager;
-
-	test = filemanager.get_current_working_directory();
-
-	std::cout << test << std::endl;
-
-	// Testing get files in folder
-	
-	std::vector<std::string> test_list;
-	test_list = filemanager.get_files_in_folders("Source Files");
-	
-	for (auto x : test_list)
-	{
-		std::cout << x << "\n";
-	}
 	
 	// Testing get file_name_without_ext and get file_name_with_ext
 	std::string test_string2 = "Matin.Diaz.png";
-	std::string test_result2 = filemanager.get_file_name_ext(test_string2);
-	std::string test_result3 = filemanager.get_file_name_without_ext(test_string2);
+	std::string test_result2 = File_Manager::get_file_name_ext(test_string2);
+	std::string test_result3 = File_Manager::get_file_name_without_ext(test_string2);
 	std::cout << test_result2 << "\n";
 	std::cout << test_result3 << "\n";
 	std::cin >> i;
 
 	//******************************************************************************
+
 	
 	
 
@@ -122,6 +102,6 @@ int main(int argc, char* args[])
 	//SDL_Surface* PrimarySurface = NULL;
 	//const int SCREEN_WIDTH = 640;
 	//const int SCREEN_HEIGHT = 480;
-
+	
 	return 0;
 }

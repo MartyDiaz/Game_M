@@ -36,10 +36,10 @@
     <ClCompile Include="Source Files\Test.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\Texture_Store.cpp">
+    <ClCompile Include="Source Files\Texture_Storage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\FileManager.cpp">
+    <ClCompile Include="Source Files\File_Manager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -605,10 +605,10 @@
     <ClInclude Include="Source Files\spdlog\version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\Texture_Store.h">
+    <ClInclude Include="Header Files\Texture_Storage.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\FileManager.h">
+    <ClInclude Include="Header Files\File_Manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -625,5 +625,6 @@
     <None Include="SDL2.dll" />
     <None Include="SDL2_image.dll" />
     <None Include="zlib1.dll" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

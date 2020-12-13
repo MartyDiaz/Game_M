@@ -8,7 +8,7 @@
 #include <vector>
 
 
-class Texture_Store
+class Texture_Storage
 {
 
 private:

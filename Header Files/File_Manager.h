@@ -13,18 +13,17 @@
 #include <system_error>
 
 
-class FileManager 
+namespace File_Manager 
 {
-private:
-	std::string dir_seperator = "/";
-	std::error_code errc;
-public:
+	enum class relative_files
+	{
+		FILES_RELATIVE, 
+		FILES_NOT_RELATIVE
+	};
 
-	//static bool set_contents(std::string Filename, std::string Content, bool Relative = true);
-
-	std::string get_contents(std::string filename, bool relative = true);
-
-	std::vector<std::string> get_files_in_folders(std::string folder);
+	extern std::string dir_seperator;
+	
+	std::vector<std::string> get_files_in_folders(std::string folder, relative_files );
 
 	std::string get_current_working_directory();
 
