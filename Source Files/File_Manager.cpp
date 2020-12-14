@@ -1,24 +1,23 @@
 #include "File_Manager.h"
  
-std::string File_Manager::dir_seperator = "/";
+std::string File_Manager::dir_seperator = "\\";
 
 //Enums
 //FILES_RELATIVE,
 //FILES_NOT_RELATIVE
 
-std::vector<std::string> File_Manager::get_files_in_folders(std::string folder, relative_files rel)
+std::vector<std::string> File_Manager::get_files_in_folders(std::string folder, relative_files_opt rel)
 {
 	std::vector<std::string> list;
 	std::error_code errc;
 
-
 	std::string current_working_directory = get_current_working_directory();
 	std::string path = "";
-	if (rel == relative_files::FILES_RELATIVE)
+	if (rel == relative_files_opt::FILES_RELATIVE)
 	{
-		path += current_working_directory+File_Manager::dir_seperator + folder;
+		path += current_working_directory + File_Manager::dir_seperator + folder;
 	}
-	else if (rel == relative_files::FILES_NOT_RELATIVE) {
+	else if (rel == relative_files_opt::FILES_NOT_RELATIVE) {
 		path += folder;
 	}
 

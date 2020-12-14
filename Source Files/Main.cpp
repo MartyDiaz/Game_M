@@ -1,4 +1,3 @@
-#include "Test.h"
 #include "Manager.h"
 #include "Entity.h"
 #include "Component.h"
@@ -15,6 +14,17 @@ int main(int argc, char* args[])
 	//*******************************************************************************
 	
 	int i;
+
+		std::vector<std::string> manager_list;
+		
+		std::string path = "";
+
+		manager_list = File_Manager::get_files_in_folders(path, File_Manager::relative_files_opt::FILES_RELATIVE);
+
+		for (auto x : manager_list)
+		{
+			std::cout << x << "\n";
+		}
 	
 	// Testing get file_name_without_ext and get file_name_with_ext
 	std::string test_string2 = "Matin.Diaz.png";

@@ -15,7 +15,7 @@
 
 namespace File_Manager 
 {
-	enum class relative_files
+	enum class relative_files_opt
 	{
 		FILES_RELATIVE, 
 		FILES_NOT_RELATIVE
@@ -23,7 +23,7 @@ namespace File_Manager
 
 	extern std::string dir_seperator;
 	
-	std::vector<std::string> get_files_in_folders(std::string folder, relative_files );
+	std::vector<std::string> get_files_in_folders(std::string folder, relative_files_opt );
 
 	std::string get_current_working_directory();
 

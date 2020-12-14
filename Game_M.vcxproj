@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source Files\File_Manager.cpp" />
+    <ClCompile Include="Source Files\Texture.cpp" />
     <ClCompile Include="Source Files\Texture_Storage.cpp" />
     <ClCompile Include="Source Files\Component.cpp" />
     <ClCompile Include="Source Files\Entity.cpp" />
@@ -27,7 +28,6 @@
     <ClCompile Include="Source Files\Main.cpp" />
     <ClCompile Include="Source Files\Manager.cpp" />
     <ClCompile Include="Source Files\Physics_Component.cpp" />
-    <ClCompile Include="Source Files\Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header Files\Component.h" />
@@ -39,7 +39,7 @@
     <ClInclude Include="Header Files\Manager.h" />
     <ClInclude Include="Header Files\Manager_def.h" />
     <ClInclude Include="Header Files\Physics_Component.h" />
-    <ClInclude Include="Header Files\Test.h" />
+    <ClInclude Include="Header Files\Texture.h" />
     <ClInclude Include="Header Files\Texture_Storage.h" />
     <ClInclude Include="Source Files\spdlog\async.h" />
     <ClInclude Include="Source Files\spdlog\async_logger-inl.h" />
