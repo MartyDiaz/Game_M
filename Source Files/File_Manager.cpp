@@ -49,9 +49,13 @@ std::string File_Manager::get_file_name_without_ext(std::string filename)
 	// create a filesystem::path with a string then use remove ext function then
 	// convert back to a string. Probably is safer but not sure if performance will 
 	// be slow. So using boost split for now.
-	std::vector<std::string> result;
-	boost::split(result, filename, boost::is_any_of("."));
-	return result[result.size() - 2];
+	std::vector<std::string> directory_parts;
+	boost::split(directory_parts, filename, boost::is_any_of("\\"));
+	std::string result = directory_parts.back();
+
+	std::vector<std::string> ext_part;
+	boost::split(ext_part, result, boost::is_any_of("."));
+	return ext_part[ext_part.size() - 2];
 }
 
 std::string File_Manager::get_file_name_ext(std::string filename)

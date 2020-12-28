@@ -6,6 +6,8 @@
 #include "Physics_Component.h"
 #include "File_Manager.h"
 #include "Texture.h"
+#include "Texture_Storage.h"
+
 #include <string>
 #include <iostream>
 
@@ -97,8 +99,8 @@ bool load_media()
 void close()
 {
 	//Free loaded image
-	SDL_DestroyTexture(texture);
-	texture = NULL;
+	//SDL_DestroyTexture(texture);
+	//texture = NULL;
 
 	//Destory window
 	SDL_DestroyRenderer(renderer);
@@ -120,7 +122,7 @@ SDL_Texture* load_texture(std::string path)
 	SDL_Surface* loaded_surface = IMG_Load(path.c_str());
 	if (loaded_surface == NULL)
 	{
-		spdlog::error("Unableto load image %s SDL_image Error: %s\n", path.c_str(), IMG_GetError());
+		spdlog::error("Unable to load image %s SDL_image Error: %s\n", path.c_str(), IMG_GetError());
 	}
 	else {
 		new_texture = SDL_CreateTextureFromSurface(renderer, loaded_surface);
@@ -136,6 +138,7 @@ SDL_Texture* load_texture(std::string path)
 
 int main(int argc, char* args[])
 {
+	
 	//************************************************************************************************
 	//SDL2 Window test
 	if (!init())
@@ -144,12 +147,18 @@ int main(int argc, char* args[])
 	}
 	else 
 	{
-		if (!load_media())
-		{
-			printf("Failed to load media!\n");
-		}
-		else
-		{ 
+		//if (!load_media())
+		//{
+		//	printf("Failed to load media!\n");
+		//}
+		//else
+		//{
+		
+		std::string tex_folder = "assets";
+		Texture_Storage texture_storage{renderer, tex_folder};
+		texture_storage.print_texture_list();
+		Texture* test_texture = texture_storage.get_texture("texture1");
+		
 			bool quit = false;
 
 			SDL_Event e;
@@ -165,28 +174,39 @@ int main(int argc, char* args[])
 				}
 				SDL_RenderClear(renderer);
 
-				SDL_RenderCopy(renderer, texture, NULL, NULL);
+				//SDL_RenderCopy(renderer, texture, NULL, NULL);
+				int x = 0;
+				int y = 0;
+				test_texture->render(x, y);
 
 				SDL_RenderPresent(renderer);
 
-				int x = 0;
-				std::cin >> x;
+				SDL_Delay(5000);
 			}
-		}
+		//}
 	}
 	close();
+
 	//************************************************************************************************
+	
 
-
+	/*
+	//Texture Storage Test
+	init();
+	std::string tex_folder = "assets";
+	Texture_Storage texture_storage{ renderer, tex_folder };
+	texture_storage.print_texture_list();
+	//Texture* test_texture = texture_storage.get_texture("texture1");
+	close();
+	*/
 	//*************************************************************************************************
 	//File Manager test
-	//SDL_SetMainReady();
 	/*
 	int i;
 
 	std::vector<std::string> manager_list;
 		
-	std::string path = "";
+	std::string path = "assets";
 
 	manager_list = File_Manager::get_files_in_folders(path, File_Manager::relative_files_opt::FILES_RELATIVE);
 

@@ -10,6 +10,7 @@ class Texture
 private:
 	std::string filename_;
 	SDL_Texture* sdl_texture_ = NULL;
+	SDL_Renderer* renderer_;
 
 	int width_ = 0;
 	int height_ = 0;
@@ -21,5 +22,12 @@ public:
 
 	int get_width();
 	int get_height();
+	std::string get_filename();
+
+	void render(int x, int y);
+
+	void render(int x, int y, int width, int height);
+
+	void render(int x, int y, int width, int height, int s_x, int s_y, int s_width, int s_height);
 
 };

@@ -1,6 +1,6 @@
 #include "Texture.h"
 
-Texture::Texture(SDL_Renderer* renderer, std::string filename) : filename_(filename)
+Texture::Texture(SDL_Renderer* renderer, std::string filename) : filename_(filename), renderer_(renderer)
 {
 	if (renderer == NULL){
 		spdlog::error("renderer passed is null");
@@ -36,6 +36,7 @@ Texture::~Texture()
 
 }
 
+
 int Texture::get_width()
 {
 	return width_;
@@ -44,4 +45,29 @@ int Texture::get_width()
 int Texture::get_height()
 {
 	return height_;
+}
+
+std::string Texture::get_filename()
+{
+	return filename_;
+}
+
+void Texture::render(int x, int y)
+{
+	render(x, y, width_, height_);
+}
+
+void Texture::render(int x, int y, int width, int height)
+{
+	SDL_Rect destination{ x, y, width, height };
+
+	SDL_RenderCopy(renderer_, sdl_texture_, NULL, &destination);
+}
+
+void Texture::render(int x, int y, int width, int height, int s_x, int s_y, int s_width, int s_height)
+{
+	SDL_Rect source  { s_x, s_y, s_width, s_height };
+	SDL_Rect destination { x, y, width, height };
+
+	SDL_RenderCopy(renderer_, sdl_texture_, &source, &destination);
 }

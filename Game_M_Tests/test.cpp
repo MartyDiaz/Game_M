@@ -53,7 +53,7 @@ TEST(File_Manager, get_files_relative)
 	test_list.emplace_back("C:\\Users\\16264\\Documents\\GitHub\\Game_M\\x64\\Debug\\..\\..\\temp test\\Test2.txt");
 	test_list.emplace_back("C:\\Users\\16264\\Documents\\GitHub\\Game_M\\x64\\Debug\\..\\..\\temp test\\Test3.txt");
 
-	std::string path ="..\\..\\temp test";
+	std::string path = "..\\..\\temp test";
 
 	manager_list = File_Manager::get_files_in_folders(path, File_Manager::relative_files_opt::FILES_RELATIVE);
 
@@ -65,7 +65,12 @@ TEST(File_Manager, get_files_relative)
 	{
 		EXPECT_EQ(test_list[i], manager_list[i]);
 	}
+
 }
+
+
+
+
 
 
 

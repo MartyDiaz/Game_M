@@ -24,4 +24,6 @@ public:
 
 	Texture* get_texture(std::string ID);
 
+	void print_texture_list();
+
 };
