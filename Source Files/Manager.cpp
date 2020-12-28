@@ -42,7 +42,7 @@ void Manager::refresh()
                 return !mEntity->is_alive();
             }),
             std::end(entities));
-        
+     
     }
 }
 

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <SDL.h>
+#include "Texture.h"
+#include "File_Manager.h"
 
 #include <memory>
 #include <map>
@@ -12,10 +14,14 @@ class Texture_Storage
 {
 
 private:
-	std::map<std::string, std::unique_ptr<SDL_Texture*>> texture_list;
+	std::map<std::string, std::unique_ptr<Texture>> texture_list_;
 
-	void add_texture(std::string id, const char* path);
+	void add_texture(SDL_Renderer* renderer, std::string id, std::string filename);
+
 public:
-	SDL_Texture* get_texture(std::string ID);
+
+	Texture_Storage(SDL_Renderer* renderer, std::string folder_path);
+
+	Texture* get_texture(std::string ID);
 
 };
