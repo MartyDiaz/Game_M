@@ -18,8 +18,7 @@ Texture_Storage::Texture_Storage(SDL_Renderer* renderer, std::string folder_path
 
 void Texture_Storage::add_texture(SDL_Renderer* renderer, std::string id, std::string filename)
 {
-
-	texture_list_.emplace(id, std::make_unique<Texture>(Texture{renderer,filename}));
+	texture_list_.emplace(id, std::make_unique<Texture>(renderer,filename));
 }
 
 

@@ -1,6 +1,5 @@
 #pragma once
 
-#include <SDL.h>
 #include "Texture.h"
 #include "File_Manager.h"
 

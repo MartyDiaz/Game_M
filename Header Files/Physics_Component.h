@@ -3,14 +3,19 @@
 #define Physics_Component_H
 
 #include "Component.h"
+#include "Header Files/Vector2D.h"
 #include <iostream>
 
 struct Physics_Component : Component
 {
 private:
+	Entity* entity{ nullptr };
+
+	Vector2D position;
+
+	Vector2D velocity;
 
 public:
-	Entity* entity{ nullptr };
 	
 	void draw() override;
 

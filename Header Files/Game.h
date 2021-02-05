@@ -1,50 +1,41 @@
 #ifndef Game_H
 #define Game_H
 
-#include "Component.h"
-#include "Entity.h"
 #include "Manager.h"
-
-#include <SDL.h>
-#include <SDL_image.h>
+#include "Entity.h"
+#include "Component.h"
 #include "spdlog/spdlog.h"
+#include "Physics_Component.h"
+#include "File_Manager.h"
+#include "Texture.h"
+#include "Texture_Storage.h"
+
+#include <string>
+#include <iostream>
 class Game
 {
 private:
 
 	bool Running = true;
 
-	SDL_Window* game_window = NULL;
-	SDL_Renderer* game_renderer = NULL;
-	SDL_Surface* primary_game_surface = NULL;
+	const int SCREEN_HEIGHT_ = 480;
+	const int SCREEN_WIDTH_ = 640;
+	
 
-	static const int WindowWidth = 1024;
-	static const int WindowHeight = 768;
+	SDL_Window* window_ = NULL;
+	SDL_Renderer* renderer_ = NULL;
 
-private:
-
+public:
 	Game();
+	~Game();
 
-	void on_event(SDL_Event* Event);
+	bool init_window();
 
-	bool init();
+	void run();
 
-	void loop();
+	int const get_window_width();
 
-	void render();
-
-	void cleanup();
-
-public:
-	
-	int execute(int argc, char* argv[]);
-
-public:
-	
-
-	static int get_window_width();
-
-	static int get_window_height();
+	int const get_window_height();
 
 };
 #endif

@@ -1,24 +1,28 @@
 #include "Texture.h"
 
-Texture::Texture(SDL_Renderer* renderer, std::string filename) : filename_(filename), renderer_(renderer)
+Texture::Texture(SDL_Renderer* renderer, std::string filename) : renderer_(renderer), filename_(filename)
 {
-	if (renderer == NULL){
+	if (renderer_ == NULL){
 		spdlog::error("renderer passed is null");
 	}
 	
 
 	//create SDL surface
-	SDL_Surface* temp_surface = IMG_Load(filename.c_str());
+	SDL_Surface* temp_surface = IMG_Load(filename_.c_str());
+	spdlog::error(IMG_GetError());
+	spdlog::error(SDL_GetError());
 	if (temp_surface == NULL) {
-		spdlog::error("Unable to load image : %s : %s", filename, IMG_GetError());
+		spdlog::error("Unable to load image : %s : %s", filename_, IMG_GetError());
 
 	}
 
 	//Convert SDL Surface to texture
-	if ((sdl_texture_ = SDL_CreateTextureFromSurface(renderer, temp_surface)) == NULL) {
-		spdlog::error("Unable to create SDL texture : %s : %s", filename.c_str(), IMG_GetError());
-
+	sdl_texture_ = SDL_CreateTextureFromSurface(renderer_, temp_surface);
+	if (sdl_texture_ == NULL)
+	{
+		spdlog::error("Unable to create SDL texture : %s : %s", filename_.c_str(), IMG_GetError());
 	}
+	
 
 	SDL_QueryTexture(sdl_texture_, NULL, NULL, &width_, &height_);
 
@@ -60,7 +64,8 @@ void Texture::render(int x, int y)
 void Texture::render(int x, int y, int width, int height)
 {
 	SDL_Rect destination{ x, y, width, height };
-
+	//spdlog::error ( "Rect width is ");
+	//spdlog::error( "Rect height is ");
 	SDL_RenderCopy(renderer_, sdl_texture_, NULL, &destination);
 }
 

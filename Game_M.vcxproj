@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source Files\File_Manager.cpp" />
+    <ClCompile Include="Source Files\Testing.cpp" />
     <ClCompile Include="Source Files\Texture.cpp" />
     <ClCompile Include="Source Files\Texture_Storage.cpp" />
     <ClCompile Include="Source Files\Component.cpp" />
@@ -28,6 +29,7 @@
     <ClCompile Include="Source Files\Main.cpp" />
     <ClCompile Include="Source Files\Manager.cpp" />
     <ClCompile Include="Source Files\Physics_Component.cpp" />
+    <ClCompile Include="Source Files\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Header Files\Component.h" />
@@ -41,6 +43,7 @@
     <ClInclude Include="Header Files\Physics_Component.h" />
     <ClInclude Include="Header Files\Texture.h" />
     <ClInclude Include="Header Files\Texture_Storage.h" />
+    <ClInclude Include="Header Files\Vector2D.h" />
     <ClInclude Include="Source Files\spdlog\async.h" />
     <ClInclude Include="Source Files\spdlog\async_logger-inl.h" />
     <ClInclude Include="Source Files\spdlog\async_logger.h" />
@@ -293,8 +296,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Dev\SDL2_image-2.0.5\lib\x64;C:\Dev\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Dev\SDL2-devel-2.0.14-VC\SDL2-2.0.14\include;C:\Dev\SDL2_image-devel-2.0.5-VC\SDL2_image-2.0.5\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Dev\SDL2-devel-2.0.14-VC\SDL2-2.0.14\lib\x64;C:\Dev\SDL2_image-devel-2.0.5-VC\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
     <Microsoft-googletest-v140-windesktop-msvcstl-static-rt-dyn-Disable-gtest_main>true</Microsoft-googletest-v140-windesktop-msvcstl-static-rt-dyn-Disable-gtest_main>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -326,20 +329,20 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Dev\boost_1_73_0;C:\Users\16264\Documents\GitHub\Game_M;C:\Dev\SDL2_image-2.0.5\include;C:\Dev\SDL2\include;C:\Users\16264\Documents\GitHub\Game_M\Header Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Dev\boost_1_73_0;C:\Users\16264\Documents\GitHub\Game_M;C:\Dev\SDL2-devel-2.0.14-VC\SDL2-2.0.14\include;C:\Dev\SDL2_image-devel-2.0.5-VC\SDL2_image-2.0.5\include;C:\Users\16264\Documents\GitHub\Game_M\Header Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2_image.lib;SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Dev\SDL2-devel-2.0.14-VC\SDL2-2.0.14\lib\x64;C:\Dev\SDL2_image-devel-2.0.5-VC\SDL2_image-2.0.5\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>ECHO TESTING
-dir
-move $(ProjectDir)x64\Debug\Main.obj temp
+      <Command>move $(ProjectDir)x64\Debug\Main.obj temp
 lib /OUT:"$(TargetPath).lib" $(ProjectDir)x64\Debug\*.obj
-move temp\Main.obj $(ProjectDir)x64\Debug\</Command>
+move temp\Main.obj $(ProjectDir)x64\Debug\
+</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

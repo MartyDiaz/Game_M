@@ -1,114 +1,128 @@
 #include "Game.h"
 
 
-void Game::on_event(SDL_Event* Event)
+Game::Game()
 {
-
+	if (!init_window())
+	{
+		spdlog::error("Problem initializing game window");
+	}
 }
 
-bool Game::init()
+Game::~Game()
 {
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (renderer_)
 	{
-		spdlog::error("Some error message with arg: []", 1);
-		return false;
+		SDL_DestroyRenderer(renderer_);
+		renderer_ = NULL;
 	}
 
-	if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
+	if (window_)
 	{
-		spdlog::error("Unable to Init hinting:", SDL_GetError());
+		SDL_DestroyWindow(window_);
+		window_ = NULL;
 	}
-	return false;
-
-	if ((game_window = SDL_CreateWindow(
-		"SDL Game",
-		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WindowWidth, WindowHeight, SDL_WINDOW_SHOWN)
-		) == NULL) 
-	{
-		spdlog::error("Unable to create SDL Window:", SDL_GetError());
-		return false;
-	}
-
-	//primary_surface = SDL_GetWindowSurface(window);
-
-	if ((game_renderer = SDL_CreateRenderer(game_window, -1, SDL_RENDERER_ACCELERATED)) == NULL) 
-	{
-		spdlog::error("Unable to create renderer");
-		return false;
-	}
-
-	SDL_SetRenderDrawColor(game_renderer, 0x00, 0x00, 0x00, 0xFF);
-
-	if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG))
-	{
-		spdlog::error("Unable to init SDL_image: %s", IMG_GetError());
-	}
-	
-	return true;
-
-}
-
-
-
-void Game::loop()
-{
-
-}
-
-void Game::render()
-{
-	SDL_RenderClear(game_renderer);
-
-	SDL_RenderPresent(game_renderer);
-}
-
-void Game::cleanup()
-{
-	if (game_renderer) 
-	{
-		SDL_DestroyRenderer(game_renderer);
-		game_renderer = NULL;
-	}
-
-	if (game_window)
-	{
-		SDL_DestroyWindow(game_window);
-		game_window = NULL;
-	}
-
 	IMG_Quit();
 	SDL_Quit();
-
 }
 
-int Game::execute(int argc, char* argv[])
+bool Game::init_window()
 {
-	if (!init()) return 0;
+	bool success = true;
 
-	SDL_Event event;
-
-	while (Running)
+	//Initialize SDL
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
-		while (SDL_PollEvent(&event) != 0)
+		spdlog::error("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+		success = false;
+	}
+	else
+	{
+		//Set Texture filtering to linear
+		if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
 		{
-			
+			spdlog::error("Warning: Linear texture filtering not enabled");
+		}
 
+		//Create window
+		window_ = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH_, SCREEN_HEIGHT_, SDL_WINDOW_SHOWN);
+		if (window_ == NULL)
+		{
+			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+			success = false;
+		}
+		else {
+			// create renderer for window
+			renderer_ = SDL_CreateRenderer(window_, -1, SDL_RENDERER_ACCELERATED);
+			if (renderer_ == NULL)
+			{
+				spdlog::error("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
+				success = false;
+			}
+			else {
+				// Initialize renderer coler
+				SDL_SetRenderDrawColor(renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
 
+				//Initialize PNG Loading
+				int imgFlags = IMG_INIT_PNG;
+				if (!(IMG_Init(imgFlags) & imgFlags))
+				{
+					spdlog::error("SDL_Image could not initialize! SDL_Image Error: %s\n", IMG_GetError());
+				}
+			}
 		}
 	}
 
-	cleanup();
+	return success;
+}
 
-	return 1;
+void Game::run()
+{
+	std::string tex_folder = "assets";
+	Texture_Storage texture_storage{ renderer_, tex_folder };
+	texture_storage.print_texture_list();
+	Texture* test_texture = texture_storage.get_texture("texture1");
+
+	bool quit = false;
+
+	SDL_Event e;
+
+	while (!quit)
+	{
+
+		while (SDL_PollEvent(&e) != 0)
+		{
+			if (e.type == SDL_QUIT)
+			{
+				quit = true;
+			}
+		}
+
+		SDL_RenderClear(renderer_);
+
+		//SDL_RenderCopy(renderer, texture, NULL, NULL);
+		int x = 0;
+		int y = 0;
+
+		std::cout << "Testing here" << "\n";
+		std::cout << test_texture->get_filename() << "\n";
+		std::cout << test_texture->get_height() << "\n";
+		std::cout << test_texture->get_width() << "\n";
+		test_texture->render(x, y);
+		SDL_RenderPresent(renderer_);
+
+		SDL_Delay(1000);
+	}
+	
 }
 
 
-int Game::get_window_width()
+int const Game::get_window_width()
 {
-	return WindowWidth;
+	return SCREEN_WIDTH_;
 }
 
-int Game::get_window_height()
+int const Game::get_window_height()
 {
-	return WindowHeight;
+	return SCREEN_HEIGHT_;
 }

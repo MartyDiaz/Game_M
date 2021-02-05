@@ -3,10 +3,8 @@
 #include "Header Files/File_Manager.h"
 #include "Header Files/Manager.h"
 #include "Header Files/Entity.h"
-#include "Header Files/Texture_Storage.h"
-
 #include "gtest/gtest.h"
-
+#include "Header Files/Vector2D.h"
 
 TEST(TestCaseName, TestName) 
 {
@@ -65,6 +63,19 @@ TEST(File_Manager, get_files_relative)
 	{
 		EXPECT_EQ(test_list[i], manager_list[i]);
 	}
+
+}
+
+TEST(Vector2D_tests, addition)
+{
+	Vector2D v1{ 0,0 };
+	Vector2D v2{ 5,10 };
+	Vector2D v3;
+	Vector2D expected_v{ 5,10 };
+
+	v3 = v1 + v2;
+
+	EXPECT_EQ(v3, expected_v);
 
 }
 

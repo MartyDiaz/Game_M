@@ -5,7 +5,7 @@ class Entity;
 struct Component
 {
 private:
-
+	
 public:
 	Entity* entity{ nullptr };
 	virtual ~Component();

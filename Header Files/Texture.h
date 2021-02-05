@@ -1,22 +1,27 @@
 #pragma once
 //#define SDL_MAIN_HANDLED
-#include <SDL_image.h>
-#include <SDL.h>
 #include <string>
 #include "spdlog/spdlog.h"
+#include "SDL.h"
+#include "SDL_image.h"
 
 class Texture
 {
 private:
 	std::string filename_;
-	SDL_Texture* sdl_texture_ = NULL;
-	SDL_Renderer* renderer_;
+	SDL_Texture* sdl_texture_ ;
+	SDL_Renderer* renderer_ ;
 
-	int width_ = 0;
-	int height_ = 0;
+	int width_;
+	int height_;
 
 public:
 	Texture(SDL_Renderer* renderer, std::string filename);
+
+	Texture(const Texture* other) = delete;
+	Texture(Texture&& other) = delete;
+	Texture& operator=(const Texture& other) = delete;
+	Texture& operator=(Texture&& other) = delete;
 
 	~Texture();
 
