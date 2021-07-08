@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source Files\Create.cpp" />
     <ClCompile Include="Source Files\File_Manager.cpp" />
     <ClCompile Include="Source Files\Testing.cpp" />
     <ClCompile Include="Source Files\Texture.cpp" />
@@ -34,6 +35,8 @@
   <ItemGroup>
     <ClInclude Include="Header Files\Component.h" />
     <ClInclude Include="Header Files\Component_def.h" />
+    <ClInclude Include="Header Files\Constants.h" />
+    <ClInclude Include="Header Files\Create.h" />
     <ClInclude Include="Header Files\Entity.h" />
     <ClInclude Include="Header Files\Entity_def.h" />
     <ClInclude Include="Header Files\File_Manager.h" />

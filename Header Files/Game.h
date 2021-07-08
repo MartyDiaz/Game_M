@@ -9,6 +9,8 @@
 #include "File_Manager.h"
 #include "Texture.h"
 #include "Texture_Storage.h"
+#include "Create.h"
+#include "Constants.h"
 
 #include <string>
 #include <iostream>
@@ -18,10 +20,11 @@ private:
 
 	bool Running = true;
 
-	const int SCREEN_HEIGHT_ = 480;
-	const int SCREEN_WIDTH_ = 640;
-	
+	//inline constexpr int SCREEN_HEIGHT_ = 480;
+	//inline constexpr int SCREEN_WIDTH_ = 640;
 
+	std::unique_ptr<Texture_Storage> texture_storage_;
+	
 	SDL_Window* window_ = NULL;
 	SDL_Renderer* renderer_ = NULL;
 
@@ -30,6 +33,7 @@ public:
 	~Game();
 
 	bool init_window();
+	//void init_texture_storage();
 
 	void run();
 

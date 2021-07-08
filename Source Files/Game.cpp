@@ -3,10 +3,10 @@
 
 Game::Game()
 {
-	if (!init_window())
-	{
-		spdlog::error("Problem initializing game window");
-	}
+	std::string tex_folder = "assets";
+	window_ = Create::window(Constants::SCREEN_WIDTH_, Constants::SCREEN_HEIGHT_);
+	renderer_ = Create::renderer(window_);
+	texture_storage_ = Create::texture_storage(renderer_, tex_folder);
 }
 
 Game::~Game()
@@ -26,62 +26,11 @@ Game::~Game()
 	SDL_Quit();
 }
 
-bool Game::init_window()
-{
-	bool success = true;
-
-	//Initialize SDL
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-	{
-		spdlog::error("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-		success = false;
-	}
-	else
-	{
-		//Set Texture filtering to linear
-		if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
-		{
-			spdlog::error("Warning: Linear texture filtering not enabled");
-		}
-
-		//Create window
-		window_ = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH_, SCREEN_HEIGHT_, SDL_WINDOW_SHOWN);
-		if (window_ == NULL)
-		{
-			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-			success = false;
-		}
-		else {
-			// create renderer for window
-			renderer_ = SDL_CreateRenderer(window_, -1, SDL_RENDERER_ACCELERATED);
-			if (renderer_ == NULL)
-			{
-				spdlog::error("Renderer could not be created! SDL Error: %s\n", SDL_GetError());
-				success = false;
-			}
-			else {
-				// Initialize renderer coler
-				SDL_SetRenderDrawColor(renderer_, 0xFF, 0xFF, 0xFF, 0xFF);
-
-				//Initialize PNG Loading
-				int imgFlags = IMG_INIT_PNG;
-				if (!(IMG_Init(imgFlags) & imgFlags))
-				{
-					spdlog::error("SDL_Image could not initialize! SDL_Image Error: %s\n", IMG_GetError());
-				}
-			}
-		}
-	}
-
-	return success;
-}
 
 void Game::run()
 {
-	std::string tex_folder = "assets";
-	Texture_Storage texture_storage{ renderer_, tex_folder };
-	texture_storage.print_texture_list();
-	Texture* test_texture = texture_storage.get_texture("texture1");
+	texture_storage_.get()->print_texture_list();
+	Texture* test_texture = texture_storage_.get()->get_texture("texture1");
 
 	bool quit = false;
 
@@ -119,10 +68,10 @@ void Game::run()
 
 int const Game::get_window_width()
 {
-	return SCREEN_WIDTH_;
+	return Constants::SCREEN_WIDTH_;
 }
 
 int const Game::get_window_height()
 {
-	return SCREEN_HEIGHT_;
+	return Constants::SCREEN_HEIGHT_;
 }
