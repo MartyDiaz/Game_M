@@ -299,8 +299,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Dev\SDL2-devel-2.0.14-VC\SDL2-2.0.14\include;C:\Dev\SDL2_image-devel-2.0.5-VC\SDL2_image-2.0.5\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Dev\SDL2-devel-2.0.14-VC\SDL2-2.0.14\lib\x64;C:\Dev\SDL2_image-devel-2.0.5-VC\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Dev\SDL2-2.0.14\include;C:\Dev\SDL2_image-2.0.5\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Dev\SDL2-2.0.14\lib\x64;C:\Dev\SDL2_image-2.0.5\lib\x64;$(LibraryPath)</LibraryPath>
     <Microsoft-googletest-v140-windesktop-msvcstl-static-rt-dyn-Disable-gtest_main>true</Microsoft-googletest-v140-windesktop-msvcstl-static-rt-dyn-Disable-gtest_main>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -332,20 +332,19 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Dev\boost_1_73_0;C:\Users\16264\Documents\GitHub\Game_M;C:\Dev\SDL2-devel-2.0.14-VC\SDL2-2.0.14\include;C:\Dev\SDL2_image-devel-2.0.5-VC\SDL2_image-2.0.5\include;C:\Users\16264\Documents\GitHub\Game_M\Header Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Dev\boost_1_73_0;C:\Users\marty\source\repos\Game_M;C:\Dev\SDL2-2.0.14\include;C:\Dev\SDL2_image-2.0.5\include;C:\Users\marty\source\repos\Game_M\Header Files;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Dev\SDL2-devel-2.0.14-VC\SDL2-2.0.14\lib\x64;C:\Dev\SDL2_image-devel-2.0.5-VC\SDL2_image-2.0.5\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Dev\SDL2-2.0.14\lib\x64;C:\Dev\SDL2_image-2.0.5\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>move $(ProjectDir)x64\Debug\Main.obj temp
 lib /OUT:"$(TargetPath).lib" $(ProjectDir)x64\Debug\*.obj
-move temp\Main.obj $(ProjectDir)x64\Debug\
-</Command>
+move temp\Main.obj $(ProjectDir)x64\Debug\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
