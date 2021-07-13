@@ -1,6 +1,6 @@
 # Game_M
 
-Game_M is a C++ video game I am currently working on. It uses Simple DirectMedia Layer library for graphics. It is in early development but I will keep the repository public. I work on this project randomly so updates may be random. 
+Game_M is a C++ video game I am currently working on. It uses Simple DirectMedia Layer library for graphics. It is in early development but I will keep the repository public. I work on this project randomly so updates may be slow.
 
 ## overview 
 
