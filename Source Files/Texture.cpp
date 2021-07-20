@@ -23,12 +23,13 @@ Texture::Texture(SDL_Renderer* renderer, std::string filename) : renderer_(rende
 		spdlog::error("Unable to create SDL texture : %s : %s", filename_.c_str(), IMG_GetError());
 	}
 	
-
+	// width_ and height_ are obtained from the dimensions of the image file.
 	SDL_QueryTexture(sdl_texture_, NULL, NULL, &width_, &height_);
 
 	SDL_FreeSurface(temp_surface);
 
 }
+
 
 Texture::~Texture()
 {

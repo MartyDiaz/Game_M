@@ -21,7 +21,6 @@ void Texture_Storage::add_texture(SDL_Renderer* renderer, std::string id, std::s
 	texture_list_.emplace(id, std::make_unique<Texture>(renderer,filename));
 }
 
-
 Texture* Texture_Storage::get_texture(std::string id)
 {
 	if (texture_list_.find(id) == texture_list_.end()) 

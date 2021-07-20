@@ -6,6 +6,7 @@ std::string File_Manager::dir_seperator = "\\";
 //FILES_RELATIVE,
 //FILES_NOT_RELATIVE
 
+//TODO: This function is hard to read. Mabye boost has something similar that can replace this.
 std::vector<std::string> File_Manager::get_files_in_folders(std::string folder, relative_files_opt rel)
 {
 	std::vector<std::string> list;
@@ -36,6 +37,7 @@ std::vector<std::string> File_Manager::get_files_in_folders(std::string folder, 
 	}
 	return list;	
 }
+
 
 std::string File_Manager::get_current_working_directory()
 {

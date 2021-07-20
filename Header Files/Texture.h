@@ -1,10 +1,12 @@
 #pragma once
-//#define SDL_MAIN_HANDLED
+//#define SDL_MAIN_HANDLED // Saw a stack overflow post saying this is needed. So far not needed.
 #include <string>
 #include "spdlog/spdlog.h"
 #include "SDL.h"
 #include "SDL_image.h"
 
+// Wrapper for SDL_Texture so that it will destroy itself.
+// Also has render fuctions to draw.
 class Texture
 {
 private:

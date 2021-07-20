@@ -12,7 +12,7 @@
 #include <filesystem>
 #include <system_error>
 
-
+// Namespace containing functions to manipulate files.
 namespace File_Manager 
 {
 	enum class relative_files_opt

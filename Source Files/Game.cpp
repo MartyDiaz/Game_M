@@ -3,7 +3,9 @@
 
 Game::Game()
 {
-	std::string tex_folder = "assets";
+	std::string tex_folder = "assets"; // Path to folder where Game will create 
+	                                   // texture objects from image files
+	
 	window_ = Create::window(Constants::SCREEN_WIDTH_, Constants::SCREEN_HEIGHT_);
 	renderer_ = Create::renderer(window_);
 	texture_storage_ = Create::texture_storage(renderer_, tex_folder);
@@ -30,8 +32,9 @@ Game::~Game()
 void Game::run()
 {
 	texture_storage_.get()->print_texture_list();
-	Texture* test_texture = texture_storage_.get()->get_texture("texture1");
-
+	//Texture* test_texture = texture_storage_.get()->get_texture("texture1"); 
+	//I don't think I need the .get() above 
+	Texture* test_texture = texture_storage_->get_texture("texture1");
 	bool quit = false;
 
 	SDL_Event e;

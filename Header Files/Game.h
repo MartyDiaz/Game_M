@@ -14,6 +14,12 @@
 
 #include <string>
 #include <iostream>
+// Game runs the game loop.
+// Constructor creates window and renderer for the game. Also creates 
+// texure_storage object to hold textures. Game object owns window_ 
+// and renderer_ raw pointers, they are destroyed in the destructor. 
+// Game also owns texture_storage_ and is a unique pointer.
+// Only one instance of Game should be made.
 class Game
 {
 private:
@@ -32,7 +38,7 @@ public:
 	Game();
 	~Game();
 
-	bool init_window();
+	//bool init_window();
 	//void init_texture_storage();
 
 	void run();
