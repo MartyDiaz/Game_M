@@ -11,6 +11,8 @@
 // Container that holds Texture objects.
 // Owns std::map texture_list_ object that contains Textures.
 // Needs a renderer passed because Texture objects need a renderer when created.
+// To create a Texture_Storage call Create::texture_storage(*arguments*), this
+// returns a unique ptr so caller owns Texture_Storage.
 // Game class should call texture_storage_->get_texture(ID) to get a pointer
 // to one of the Textures in texture_list_ , and then call ->render() on that
 // pointer to draw it.

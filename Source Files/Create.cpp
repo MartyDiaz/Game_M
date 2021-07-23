@@ -27,6 +27,7 @@ SDL_Window* Create::window(int screen_width, int screen_height)
 	}
 }
 
+
 SDL_Renderer* Create::renderer(SDL_Window* created_window)
 {
 	if (created_window == NULL)
@@ -58,6 +59,7 @@ SDL_Renderer* Create::renderer(SDL_Window* created_window)
 	}
 }
 
+// Function to construct Texture_Storage as a unique ptr.
 std::unique_ptr<Texture_Storage> Create::texture_storage(SDL_Renderer* created_renderer, std::string folder_path)
 {
 	return std::make_unique<Texture_Storage>(created_renderer, folder_path);
