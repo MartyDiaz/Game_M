@@ -2,12 +2,13 @@
 #define Component_Def_H
 
 class Entity;
+
 struct Component
 {
 private:
 	
 public:
-	Entity* entity{ nullptr };
+	Entity* entity_ { nullptr };
 	virtual ~Component();
 	virtual void init();
 	virtual void draw();

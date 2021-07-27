@@ -22,28 +22,32 @@
 class Manager;
 struct Component;
 
-static constexpr std::size_t max_components{ 32 };
+static constexpr std::size_t max_components{32};
 using Component_bit_set = std::bitset<max_components>;
 using Component_array = std::array<Component*, max_components>;
+
+// Type id is unique identifier for every type of Component an Entity has.
+// Used in component_array
 using Component_id = std::size_t;
 
-static constexpr std::size_t max_groups{ 32 };
+static constexpr std::size_t max_groups{32};
 using Group = std::size_t;
 using Group_bit_set = std::bitset <max_groups>;
 
 
-class Manager;
 
+// Entity is a game world object made up of components. Entities own
+// components.
 class Entity
 {
 
 private:
-	//class Manager;
 
-	Manager& manager;
+	// Manager that owns this entity
+	Manager& manager_;
 
 	std::vector<std::unique_ptr<Component>> components;
-	bool alive{ true };
+	bool alive_{ true };
 
 	/*
 	static constexpr std::size_t max_components{ 32 };
@@ -56,9 +60,9 @@ private:
 	using Group_bit_set = std::bitset <max_groups>;
 	*/
 
-	Component_array component_array;
-	Component_bit_set component_bit_set;
-	Group_bit_set group_bit_set;
+	Component_array component_array_;
+	Component_bit_set component_bit_set_;
+	Group_bit_set group_bit_set_;
 
 public:
 
@@ -73,37 +77,46 @@ public:
 	void del_group(Group mGroup) noexcept;
 
 
-	// Add a component to the entities component vector. Remember it is a vector of unique pointers
+	// Add a component to the Entities component vector. Remember it is a vector of unique pointers
 	template <typename T, typename... TArgs>
 	T& add_component(TArgs&&... mArgs)
 	{
 		assert(!has_component<T>());
 
 		T* added_component(new T(std::forward<TArgs>(mArgs)...));
-
-		added_component->entity = this; // Component that we added now has a pointer to parent entity.
+		
+		// Component that we added now has a pointer to parent entity.
+		added_component->entity_ = this; 
 
 		//std::unique_ptr<Component> u_ptr{ added_component }; 
 
 		// Emplace the component we want to add as a unique pointer to the enitities component vector.
 		components.emplace_back(std::unique_ptr<Component> {added_component});
 
-		component_array[get_component_type_id<T>()] = added_component;
-		component_bit_set[get_component_type_id<T>()] = true;
+		// Pointer to the component we just made is also added to component_array. 
+		// Component_id is the index for each type of component.
+		component_array_[get_component_type_id<T>()] = added_component;
+		component_bit_set_[get_component_type_id<T>()] = true;
 
-		added_component->init();
+		// TODO: Is init() function needed? Can we have everything done in construct
+		//added_component->init();
 
 		return *added_component;
 	}
 
+	// Used in get_component_type_id to get unique id everytime a new type of
+	// Component is added to the Entity.
 	inline Component_id get_unique_component_id() const noexcept
 	{
-
 		static Component_id last_id{ 0u };
 		return last_id++;
-
 	}
 
+	// Return the Component_id of a Component. Component_id is unique identifier
+	// for every type of Component an Entity has. Component_id is used as an index 
+	// in the component_array. If a new type of Component is added to an entity the 
+	// Component_id is incremented and returned. Otherwise the same id is returned 
+	// for that type of Component so it can be returned in the get_component() function.
 	template <typename T>
 	inline Component_id get_component_type_id() const noexcept
 	{
@@ -116,14 +129,14 @@ public:
 	template<typename T>
 	bool has_component() const
 	{
-		return component_bit_set[get_component_type_id<T>()];
+		return component_bit_set_[get_component_type_id<T>()];
 	}
 
 	template <typename T>
 	T& get_component() const
 	{
 		assert(has_component<T>());
-		auto ptr(component_array[get_component_type_id<T>()]);
+		auto ptr(component_array_[get_component_type_id<T>()]);
 		return *static_cast<T*>(ptr);
 	}
 

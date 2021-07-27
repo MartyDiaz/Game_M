@@ -9,7 +9,7 @@
 struct Physics_Component : Component
 {
 private:
-	Entity* entity{ nullptr };
+	Entity* entity_{ nullptr };
 
 	Vector2D position;
 

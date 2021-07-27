@@ -1,18 +1,18 @@
 #include "Entity.h"
 
-Entity::Entity(Manager& mManager) : manager(mManager) 
+Entity::Entity(Manager& mManager) : manager_(mManager) 
 {
 
 }
 
 bool Entity::is_alive()
 {
-	return alive;
+	return alive_;
 }
 
 void Entity::destroy()
 {
-	alive = false;
+	alive_ = false;
 }
 
 void Entity::update(float mFT)
@@ -27,18 +27,18 @@ void Entity::update(float mFT)
 
 	bool Entity::has_group(Group mGroup) const noexcept
 	{
-		return group_bit_set[mGroup];
+		return group_bit_set_[mGroup];
 	}
 
 	void Entity::add_group(Group mGroup) noexcept
 	{
-		group_bit_set[mGroup] = true;
-		manager.add_to_group(mGroup, this);
+		group_bit_set_[mGroup] = true;
+		manager_.add_to_group(mGroup, this);
 	}
 
 	void Entity::del_group(Group mGroup) noexcept
 	{
-		group_bit_set[mGroup] = false;
+		group_bit_set_[mGroup] = false;
 	}
 
 	

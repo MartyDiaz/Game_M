@@ -34,7 +34,7 @@ void Game::run()
 	texture_storage_.get()->print_texture_list();
 	//Texture* test_texture = texture_storage_.get()->get_texture("texture1"); 
 	//I don't think I need the .get() above 
-	Texture* test_texture = texture_storage_->get_texture("texture1");
+	Texture& test_texture = texture_storage_->get_texture("texture1");
 	bool quit = false;
 
 	SDL_Event e;
@@ -57,10 +57,10 @@ void Game::run()
 		int y = 0;
 
 		std::cout << "Testing here" << "\n";
-		std::cout << test_texture->get_filename() << "\n";
-		std::cout << test_texture->get_height() << "\n";
-		std::cout << test_texture->get_width() << "\n";
-		test_texture->render(x, y);
+		std::cout << test_texture.get_filename() << "\n";
+		std::cout << test_texture.get_height() << "\n";
+		std::cout << test_texture.get_width() << "\n";
+		test_texture.render(x, y);
 		SDL_RenderPresent(renderer_);
 
 		SDL_Delay(1000);

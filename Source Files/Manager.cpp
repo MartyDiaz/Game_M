@@ -4,7 +4,7 @@ Entity& Manager::add_entity()
 {
     Entity* added_entity( new Entity(*this) );
 
-    entities.emplace_back(std::unique_ptr<Entity> {added_entity});
+    entities_.emplace_back(std::unique_ptr<Entity> {added_entity});
 
     return *added_entity;
 }
@@ -12,12 +12,12 @@ Entity& Manager::add_entity()
 void Manager::update(float mFT)
 {
 
-    for (auto& e : entities) e->update(mFT);
+    for (auto& e : entities_) e->update(mFT);
 }
 
 void Manager::draw()
 {
-    for (auto & e : entities) e->draw();
+    for (auto& e : entities_) e->draw();
 
 }
 
@@ -25,7 +25,7 @@ void Manager::refresh()
 {
     for (auto i(0u); i < max_groups; ++i)
     {
-        auto& v(grouped_entities[i]);
+        auto& v(grouped_entities_[i]);
 
         v.erase(
             std::remove_if(std::begin(v), std::end(v),
@@ -35,13 +35,13 @@ void Manager::refresh()
                 }),
             std::end(v));
 
-        entities.erase(
-            std::remove_if(entities.begin(), entities.end(), 
+        entities_.erase(
+            std::remove_if(entities_.begin(), entities_.end(), 
                 [](const std::unique_ptr<Entity>& mEntity)
             {
                 return !mEntity->is_alive();
             }),
-            std::end(entities));
+            std::end(entities_));
      
     }
 }
@@ -49,10 +49,10 @@ void Manager::refresh()
 
 void Manager::add_to_group(Group mGroup, Entity* mEntity)
 {
-    grouped_entities[mGroup].emplace_back(mEntity);
+    grouped_entities_[mGroup].emplace_back(mEntity);
 }
 
 std::vector<Entity*>& Manager::get_entities_by_group(Group mGroup)
 {
-    return grouped_entities[mGroup];
+    return grouped_entities_[mGroup];
 }
