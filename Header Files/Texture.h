@@ -27,9 +27,9 @@ public:
 
 	~Texture();
 
-	int get_width();
-	int get_height();
-	std::string get_filename();
+	int get_width() const;
+	int get_height() const;
+	std::string get_filename() const;
 
 	void render(int x, int y);
 

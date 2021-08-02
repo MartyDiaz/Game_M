@@ -21,7 +21,7 @@ void Texture_Storage::add_texture(SDL_Renderer* renderer, std::string id, std::s
 	texture_list_.emplace(id, std::make_unique<Texture>(renderer,filename));
 }
 
-Texture& Texture_Storage::get_texture(std::string id)
+Texture& Texture_Storage::get_texture(std::string id) const
 {
 	if (texture_list_.find(id) == texture_list_.end()) 
 	{
@@ -31,7 +31,7 @@ Texture& Texture_Storage::get_texture(std::string id)
 	return *texture_list_.at(id).get();
 }
 
-void Texture_Storage::print_texture_list()
+void Texture_Storage::print_texture_list() const
 {
 	for (auto& id : texture_list_)
 	{

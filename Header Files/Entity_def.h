@@ -35,7 +35,6 @@ using Group = std::size_t;
 using Group_bit_set = std::bitset <max_groups>;
 
 
-
 // Entity is a game world object made up of components. Entities own
 // components.
 class Entity
@@ -83,7 +82,8 @@ public:
 	{
 		assert(!has_component<T>());
 
-		T* added_component(new T(std::forward<TArgs>(mArgs)...));
+		// T* added_component(new T(std::forward<TArgs>(mArgs)...)); Other way of doing this
+		T* added_component { new T(std::forward<TArgs>(mArgs)...) };
 		
 		// Component that we added now has a pointer to parent entity.
 		added_component->entity_ = this; 

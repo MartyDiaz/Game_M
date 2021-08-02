@@ -42,17 +42,17 @@ Texture::~Texture()
 }
 
 
-int Texture::get_width()
+int Texture::get_width() const
 {
 	return width_;
 }
 
-int Texture::get_height()
+int Texture::get_height() const
 {
 	return height_;
 }
 
-std::string Texture::get_filename()
+std::string Texture::get_filename() const
 {
 	return filename_;
 }
