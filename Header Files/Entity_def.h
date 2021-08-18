@@ -31,8 +31,8 @@ using Component_array = std::array<Component*, max_components>;
 using Component_id = std::size_t;
 
 static constexpr std::size_t max_groups{32};
-using Group = std::size_t;
 using Group_bit_set = std::bitset <max_groups>;
+using Group = std::size_t;
 
 
 // Entity is a game world object made up of components. Entities own
@@ -116,7 +116,7 @@ public:
 	// for every type of Component an Entity has. Component_id is used as an index 
 	// in the component_array. If a new type of Component is added to an entity the 
 	// Component_id is incremented and returned. Otherwise the same id is returned 
-	// for that type of Component so it can be returned in the get_component() function.
+	// for that type of Component.
 	template <typename T>
 	inline Component_id get_component_type_id() const noexcept
 	{

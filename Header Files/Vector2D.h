@@ -8,7 +8,7 @@ private:
 
 public:
 	Vector2D();
-	Vector2D(int x, int y);
+	Vector2D(float x, float y);
 
 	void zero();
 
