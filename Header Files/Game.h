@@ -37,9 +37,13 @@ private:
 	SDL_Window* window_ = NULL;
 	SDL_Renderer* renderer_ = NULL;
 
+	SDL_Rect camera_;
+
+	Manager manager_;
+
 
 public:
-	Game();
+	Game(int screen_width, int screen_height);
 	~Game();
 
 	//bool init_window();

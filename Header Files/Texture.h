@@ -20,7 +20,7 @@ private:
 public:
 	Texture(SDL_Renderer* renderer, std::string filename);
 
-	Texture(const Texture* other) = delete;
+	Texture(const Texture& other) = delete;
 	Texture(Texture&& other) = delete;
 	Texture& operator=(const Texture& other) = delete;
 	Texture& operator=(Texture&& other) = delete;

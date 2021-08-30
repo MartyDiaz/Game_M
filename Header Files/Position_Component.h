@@ -2,20 +2,26 @@
 #define Position_Component_H
 
 #include "Component.h"
+#include "Vector2D.h"
 #include <iostream>
 
 struct Position_Component : Component
 {
-
 	Entity* entity_{ nullptr };
 
-	Position_Component();
+	Vector2D position_;
+
+	Position_Component(const Vector2D& position);
 
 	void draw() override;
 
 	void update(float mFT) override;
 
 	void init() override;
+
+	float x();
+
+	float y();
 };
 
 

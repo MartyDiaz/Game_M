@@ -90,12 +90,22 @@ bool Vector2D::operator==(const Vector2D& other_v) const
 	}
 }
 
-int Vector2D::get_x()
+float Vector2D::get_x()
 {
 	return x_;
 }
 
-int Vector2D::get_y()
+float Vector2D::get_y()
+{
+	return y_;
+}
+
+float Vector2D::x()
+{
+	return x_;
+}
+
+float Vector2D::y()
 {
 	return y_;
 }

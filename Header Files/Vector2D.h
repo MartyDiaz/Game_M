@@ -3,8 +3,8 @@
 class Vector2D
 {
 private:
-	int x_;
-	int y_;
+	float x_;
+	float y_;
 
 public:
 	Vector2D();
@@ -30,9 +30,13 @@ public:
 
 	bool operator ==(const Vector2D& other_v) const ;
 
+	float get_x();
 
-	int get_x();
-	int get_y();
+	float get_y();
+
+	float x();
+
+	float y();
 
 };
 

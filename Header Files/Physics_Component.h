@@ -1,21 +1,21 @@
-
 #ifndef Physics_Component_H
 #define Physics_Component_H
 
 #include "Component.h"
-#include "Header Files/Vector2D.h"
+#include "Position_Component.h"
+#include "Vector2D.h"
 #include <iostream>
 
 struct Physics_Component : Component
 {
-private:
+
 	Entity* entity_{ nullptr };
 
-	Vector2D position;
+	Position_Component* position_component_;
 
-	Vector2D velocity;
+	Vector2D velocity_;
 
-public:
+	Physics_Component(Position_Component* poistion_component);
 	
 	void draw() override;
 

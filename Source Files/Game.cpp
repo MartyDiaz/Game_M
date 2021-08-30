@@ -1,12 +1,12 @@
 #include "Game.h"
 
 
-Game::Game()
+Game::Game(int screen_width, int screen_height) : camera_{0, 0, screen_width, screen_height}
 {
 	std::string tex_folder = "assets"; // Path to folder where Game will create 
 	                                   // texture objects from image files
 	
-	window_ = Create::window(Constants::SCREEN_WIDTH_, Constants::SCREEN_HEIGHT_);
+	window_ = Create::window(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT);
 	renderer_ = Create::renderer(window_);
 	texture_storage_ = Create::texture_storage(renderer_, tex_folder);
 	
@@ -15,8 +15,7 @@ Game::Game()
 	ft_slice = 0.1f; // time window
 	current_slice = 0.f; // time window for the recent frame.
 
-	Manager manager;
-	auto& entity(manager.add_entity());
+	auto& entity(manager_.add_entity());
 
 	entity.add_component<Counter_Component>(0.0);
 	entity.add_component<Kill_Component>(&entity.get_component<Counter_Component>());
@@ -44,8 +43,6 @@ Game::~Game()
 
 void Game::run()
 {
-
-
 
 	texture_storage_.get()->print_texture_list();
 	//Texture* test_texture = texture_storage_.get()->get_texture("texture1"); 
@@ -100,7 +97,8 @@ void Game::update_phase()
 	current_slice += last_ft;
 	for (; current_slice >= ft_slice; current_slice -= ft_slice)
 	{
-		// std::cout << "Updating\n";
+		manager_.refresh();
+		manager_.update(ft_step);
 	}
 
 }
@@ -125,10 +123,10 @@ void Game::draw_phase()
 
 int const Game::get_window_width()
 {
-	return Constants::SCREEN_WIDTH_;
+	return Constants::SCREEN_WIDTH;
 }
 
 int const Game::get_window_height()
 {
-	return Constants::SCREEN_HEIGHT_;
+	return Constants::SCREEN_HEIGHT;
 }
