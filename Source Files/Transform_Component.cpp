@@ -7,13 +7,13 @@ Transform_Component::Transform_Component() :
 }
 
 Transform_Component::Transform_Component(int scale) :
-	height_{ 0 }, width_{ 0 }, scale_{scale}
+	height_{ 32 }, width_{ 32 }, scale_{scale}
 {
 
 }
 
 Transform_Component::Transform_Component(float x_pos, float y_pos) :
-	position_{ x_pos, y_pos }, height_{ 0 }, width_{ 0 }, scale_{ 1 }
+	position_{ x_pos, y_pos }, height_{ 32 }, width_{ 32 }, scale_{ 1 }
 {
 
 }

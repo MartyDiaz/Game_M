@@ -77,3 +77,8 @@ void Texture::render(int x, int y, int width, int height, int s_x, int s_y, int 
 
 	SDL_RenderCopy(renderer_, sdl_texture_, &source, &destination);
 }
+
+void Texture::render(SDL_Rect source, SDL_Rect destination)
+{
+	SDL_RenderCopy(renderer_, sdl_texture_, &source, &destination);
+}

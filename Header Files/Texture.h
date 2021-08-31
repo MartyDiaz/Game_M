@@ -11,8 +11,8 @@ class Texture
 {
 private:
 	std::string filename_;
-	SDL_Texture* sdl_texture_ ;
-	SDL_Renderer* renderer_ ;
+	SDL_Texture* sdl_texture_;
+	SDL_Renderer* renderer_;
 
 	int width_;
 	int height_;
@@ -28,7 +28,9 @@ public:
 	~Texture();
 
 	int get_width() const;
+
 	int get_height() const;
+
 	std::string get_filename() const;
 
 	void render(int x, int y);
@@ -36,5 +38,7 @@ public:
 	void render(int x, int y, int width, int height);
 
 	void render(int x, int y, int width, int height, int s_x, int s_y, int s_width, int s_height);
+
+	void render(SDL_Rect source, SDL_Rect destination);
 
 };

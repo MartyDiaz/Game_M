@@ -34,7 +34,7 @@ public:
 	// passed.
 	Texture_Storage(SDL_Renderer* renderer, std::string folder_path);
 
-	Texture& get_texture(std::string ID) const;
+	Texture* get_texture(std::string ID) const;
 
 	// For debugging
 	void print_texture_list() const; 

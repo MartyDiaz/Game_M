@@ -105,7 +105,7 @@ void Game::update_phase()
 
 void Game::draw_phase()
 {
-	Texture& test_texture = texture_storage_->get_texture("texture1");
+	Texture* test_texture = texture_storage_->get_texture("texture1");
 	SDL_RenderClear(renderer_);
 
 	//SDL_RenderCopy(renderer, texture, NULL, NULL);
@@ -113,10 +113,10 @@ void Game::draw_phase()
 	int y = 0;
 
 	std::cout << "Testing here" << "\n";
-	std::cout << test_texture.get_filename() << "\n";
-	std::cout << test_texture.get_height() << "\n";
-	std::cout << test_texture.get_width() << "\n";
-	test_texture.render(x, y);
+	std::cout << test_texture->get_filename() << "\n";
+	std::cout << test_texture->get_height() << "\n";
+	std::cout << test_texture->get_width() << "\n";
+	test_texture->render(x, y);
 	SDL_RenderPresent(renderer_);
 }
 

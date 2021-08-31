@@ -21,14 +21,14 @@ void Texture_Storage::add_texture(SDL_Renderer* renderer, std::string id, std::s
 	texture_list_.emplace(id, std::make_unique<Texture>(renderer,filename));
 }
 
-Texture& Texture_Storage::get_texture(std::string id) const
+Texture* Texture_Storage::get_texture(std::string id) const
 {
 	if (texture_list_.find(id) == texture_list_.end()) 
 	{
 		spdlog::error("no texture with that id in texture_storage");
 	}
 
-	return *texture_list_.at(id).get();
+	return texture_list_.at(id).get();
 }
 
 void Texture_Storage::print_texture_list() const

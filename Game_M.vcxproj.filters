@@ -63,7 +63,7 @@
     <ClCompile Include="Source Files\Transform_Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source Files\Draw_Component.cpp">
+    <ClCompile Include="Source Files\Graphic_Component.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -656,7 +656,7 @@
     <ClInclude Include="Header Files\Transform_Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header Files\Draw_Component.h">
+    <ClInclude Include="Header Files\Graphic_Component.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

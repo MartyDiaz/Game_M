@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="Source Files\Counter_Component.cpp" />
     <ClCompile Include="Source Files\Create.cpp" />
-    <ClCompile Include="Source Files\Draw_Component.cpp" />
+    <ClCompile Include="Source Files\Graphic_Component.cpp" />
     <ClCompile Include="Source Files\File_Manager.cpp" />
     <ClCompile Include="Source Files\Kill_Component.cpp" />
     <ClCompile Include="Source Files\Position_Component.cpp" />
@@ -43,7 +43,7 @@
     <ClInclude Include="Header Files\Constants.h" />
     <ClInclude Include="Header Files\Counter_Component.h" />
     <ClInclude Include="Header Files\Create.h" />
-    <ClInclude Include="Header Files\Draw_Component.h" />
+    <ClInclude Include="Header Files\Graphic_Component.h" />
     <ClInclude Include="Header Files\Entity.h" />
     <ClInclude Include="Header Files\Entity_def.h" />
     <ClInclude Include="Header Files\File_Manager.h" />
