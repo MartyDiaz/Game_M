@@ -12,8 +12,8 @@ void Physics_Component::update(float mFT)
 {
 	std::cout << " Physics_Component updating " << "\n";
 	
-	position_component_->x() += (velocity_.x * mFT);
-	position_component_->y() += (velocity_.y * mFT);
+	position_component_->position_.x_ += (velocity_.x_ * mFT);
+	position_component_->position_.y_ += (velocity_.y_ * mFT);
 }
 
 void Physics_Component::init()

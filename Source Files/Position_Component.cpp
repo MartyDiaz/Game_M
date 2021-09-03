@@ -20,12 +20,3 @@ void Position_Component::init()
 
 }
 
-float Position_Component::x()
-{
-	return position_.get_x();
-}
-
-float Position_Component::y()
-{
-	return position_.get_y();
-}

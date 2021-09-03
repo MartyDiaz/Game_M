@@ -26,8 +26,8 @@ Transform_Component::Transform_Component(float x_pos, float y_pos, int height, i
 
 void Transform_Component::update(float mFT)
 {
-	position_.x += velocity_.x * mFT;
-	position_.y += velocity_.y * mFT;
+	position_.x_ += velocity_.x_ * mFT;
+	position_.y_ += velocity_.y_ * mFT;
 }
 
 

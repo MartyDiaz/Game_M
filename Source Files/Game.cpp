@@ -8,18 +8,12 @@ Game::Game(int screen_width, int screen_height) : camera_{0, 0, screen_width, sc
 	
 	window_ = Create::window(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT);
 	renderer_ = Create::renderer(window_);
-	texture_storage_ = Create::texture_storage(renderer_, tex_folder);
+	texture_storage_ = Create::texture_storage(renderer_, tex_folder); //Unique Pointer
 	
 	ft_step = 0.1f; // Time step used when updating enitities 
 	last_ft = 0.f; // the amount of time passed for the recent frame
 	ft_slice = 0.1f; // time window
 	current_slice = 0.f; // time window for the recent frame.
-
-	auto& entity(manager_.add_entity());
-
-	entity.add_component<Counter_Component>(0.0);
-	entity.add_component<Kill_Component>(&entity.get_component<Counter_Component>());
-
 
 }
 
@@ -44,13 +38,19 @@ Game::~Game()
 void Game::run()
 {
 
-	texture_storage_.get()->print_texture_list();
+	//texture_storage_.get()->print_texture_list();
 	//Texture* test_texture = texture_storage_.get()->get_texture("texture1"); 
 	//I don't think I need the .get() above 
 	
 	//Texture& test_texture = texture_storage_->get_texture("texture1");
 	
 	bool quit = false;
+
+	//Makeing test entity
+	auto& test_entity(manager_.add_entity());
+
+	test_entity.add_component<Transform_Component>();
+	test_entity.add_component<Graphic_Component>(&test_entity.get_component<Transform_Component>(), texture_storage_.get(), "texture1", camera_);
 
 	//SDL_Event e;
 
@@ -105,18 +105,18 @@ void Game::update_phase()
 
 void Game::draw_phase()
 {
-	Texture* test_texture = texture_storage_->get_texture("texture1");
+//	Texture* test_texture = texture_storage_->get_texture("texture1");
 	SDL_RenderClear(renderer_);
 
 	//SDL_RenderCopy(renderer, texture, NULL, NULL);
-	int x = 0;
-	int y = 0;
-
-	std::cout << "Testing here" << "\n";
-	std::cout << test_texture->get_filename() << "\n";
-	std::cout << test_texture->get_height() << "\n";
-	std::cout << test_texture->get_width() << "\n";
-	test_texture->render(x, y);
+//	int x = 0;
+//	int y = 0;
+	manager_.draw();
+//	std::cout << "Testing here" << "\n";
+//	std::cout << test_texture->get_filename() << "\n";
+//	std::cout << test_texture->get_height() << "\n";
+//	std::cout << test_texture->get_width() << "\n";
+//	test_texture->render(x, y);
 	SDL_RenderPresent(renderer_);
 }
 

@@ -19,9 +19,6 @@ struct Position_Component : Component
 
 	void init() override;
 
-	float x();
-
-	float y();
 };
 
 

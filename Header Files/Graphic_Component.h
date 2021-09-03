@@ -24,7 +24,7 @@ struct Graphic_Component : Component
 
 	Graphic_Component(Transform_Component* transform_component, 
 		const Texture_Storage* texture_storage_,
-		std::string texture_file,
+		const std::string& texture_file,
 		const SDL_Rect& camera
 	);
 

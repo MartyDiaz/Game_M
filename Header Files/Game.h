@@ -8,6 +8,8 @@
 #include "Physics_Component.h"
 #include "Counter_Component.h"
 #include "Kill_Component.h"
+#include "Transform_Component.h"
+#include "Graphic_Component.h"
 #include "File_Manager.h"
 #include "Texture.h"
 #include "Texture_Storage.h"
