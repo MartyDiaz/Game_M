@@ -29,7 +29,7 @@ class Game
 {
 private:
 
-	bool quit = false;
+	bool quit_ = false;
 
 	//inline constexpr int SCREEN_HEIGHT_ = 480;
 	//inline constexpr int SCREEN_WIDTH_ = 640;

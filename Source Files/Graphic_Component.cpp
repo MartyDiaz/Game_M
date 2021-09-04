@@ -4,12 +4,11 @@ Graphic_Component::Graphic_Component(Transform_Component* transform_component,
 	const Texture_Storage* texture_storage, const std::string& texture_file, const SDL_Rect& camera) 
 	: transform_component_{ transform_component }, texture_storage_{ texture_storage },
 	camera_{camera}
-
 {
 	set_texture(texture_file);
 	source_rect.x = source_rect.y = 0;
-	source_rect.w = transform_component_->width_;
-	source_rect.h = transform_component_->height_;
+	source_rect.w = texture_->get_width();
+	source_rect.h = texture_->get_height();
 }
 	
 void Graphic_Component::set_texture(std::string texture_file)

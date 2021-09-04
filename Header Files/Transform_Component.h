@@ -21,11 +21,13 @@ struct Transform_Component : Component
 
 	Transform_Component();
 
-	Transform_Component(int scale);
+	Transform_Component(const Vector2D& position_vector, const Vector2D& velocity_vector);
 
-	Transform_Component(float x_pos, float y_pos);
+	Transform_Component(const int& scale);
 
-	Transform_Component(float x_pos, float y_pos, int height, int width, int scale);
+	Transform_Component(const float& x_pos, const float& y_pos);
+
+	Transform_Component(const float& x_pos, const float& y_pos, const int& height, const int& width, const int& scale);
 
 	void update(float mFT) override;
 

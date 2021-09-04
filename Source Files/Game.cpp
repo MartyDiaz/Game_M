@@ -1,7 +1,7 @@
 #include "Game.h"
 
 
-Game::Game(int screen_width, int screen_height) : camera_{0, 0, screen_width, screen_height}
+Game::Game(int screen_width, int screen_height) : camera_{400, 400, screen_width, screen_height}
 {
 	std::string tex_folder = "assets"; // Path to folder where Game will create 
 	                                   // texture objects from image files
@@ -34,7 +34,6 @@ Game::~Game()
 	SDL_Quit();
 }
 
-
 void Game::run()
 {
 
@@ -49,7 +48,7 @@ void Game::run()
 	//Makeing test entity
 	auto& test_entity(manager_.add_entity());
 
-	test_entity.add_component<Transform_Component>();
+	test_entity.add_component<Transform_Component>(500.0, 500.0);
 	test_entity.add_component<Graphic_Component>(&test_entity.get_component<Transform_Component>(), texture_storage_.get(), "texture1", camera_);
 
 	//SDL_Event e;
@@ -87,7 +86,7 @@ void Game::input_phase()
 	{
 		if (e.type == SDL_QUIT)
 		{
-			quit = true;
+			quit_ = true;
 		}
 	}
 }
