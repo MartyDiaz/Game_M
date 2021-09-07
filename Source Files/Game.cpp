@@ -1,6 +1,5 @@
 #include "Game.h"
 
-
 Game::Game(int screen_width, int screen_height) : camera_{400, 400, screen_width, screen_height}
 {
 	std::string tex_folder = "assets"; // Path to folder where Game will create 
@@ -14,7 +13,6 @@ Game::Game(int screen_width, int screen_height) : camera_{400, 400, screen_width
 	last_ft = 0.f; // the amount of time passed for the recent frame
 	ft_slice = 0.1f; // time window
 	current_slice = 0.f; // time window for the recent frame.
-
 }
 
 Game::~Game()
@@ -36,7 +34,6 @@ Game::~Game()
 
 void Game::run()
 {
-
 	//texture_storage_.get()->print_texture_list();
 	//Texture* test_texture = texture_storage_.get()->get_texture("texture1"); 
 	//I don't think I need the .get() above 
@@ -49,7 +46,7 @@ void Game::run()
 	auto& test_entity(manager_.add_entity());
 
 	test_entity.add_component<Transform_Component>(500.0, 500.0);
-	test_entity.add_component<Graphic_Component>(&test_entity.get_component<Transform_Component>(), texture_storage_.get(), "texture1", camera_);
+	test_entity.add_component<Graphic_Component>(&test_entity.get_component<Transform_Component>(), texture_storage_.get(), "ship3", camera_);
 
 	//SDL_Event e;
 
@@ -73,9 +70,7 @@ void Game::run()
 		auto fps(1.f / frame_time_seconds);
 
 		//std::cout << "Frame time: " + std::to_string(frame_time) + "\tFPS: " + std::to_string(fps) + "\n";
-
 	}
-	
 }
 
 void Game::input_phase()
@@ -99,7 +94,6 @@ void Game::update_phase()
 		manager_.refresh();
 		manager_.update(ft_step);
 	}
-
 }
 
 void Game::draw_phase()

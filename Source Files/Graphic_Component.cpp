@@ -11,9 +11,9 @@ Graphic_Component::Graphic_Component(Transform_Component* transform_component,
 	source_rect.h = texture_->get_height();
 }
 	
-void Graphic_Component::set_texture(std::string texture_file)
+void Graphic_Component::set_texture(const std::string& texture_file)
 {
-	texture_ = texture_storage_->get_texture("texture1");
+	texture_ = texture_storage_->get_texture(texture_file);
 }
 
 void Graphic_Component::draw()

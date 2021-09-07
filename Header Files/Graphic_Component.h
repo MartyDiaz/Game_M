@@ -28,7 +28,7 @@ struct Graphic_Component : Component
 		const SDL_Rect& camera
 	);
 
-	void set_texture(std::string texture_file);
+	void set_texture(const std::string& texture_file);
 
 	void draw() override;
 

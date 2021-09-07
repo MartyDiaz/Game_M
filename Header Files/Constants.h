@@ -2,11 +2,11 @@
 
 namespace Constants
 {
-	inline constexpr int LEVEL_HEIGHT = 960;
-	inline constexpr int LEVEL_WIDTH =1280;
+	inline constexpr int LEVEL_HEIGHT = 1920;
+	inline constexpr int LEVEL_WIDTH =2560;
 	
-	inline constexpr int SCREEN_HEIGHT = 480;
-	inline constexpr int SCREEN_WIDTH = 640;
+	inline constexpr int SCREEN_HEIGHT = 960;
+	inline constexpr int SCREEN_WIDTH = 1280;
 
 	
 }
