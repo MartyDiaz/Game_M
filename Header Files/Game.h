@@ -15,6 +15,8 @@
 #include "Texture_Storage.h"
 #include "Create.h"
 #include "Constants.h"
+#include "Move_Command.h"
+#include "Input_Handler.h"
 
 #include <chrono>
 #include <string>
@@ -38,6 +40,11 @@ private:
 	
 	SDL_Window* window_ = NULL;
 	SDL_Renderer* renderer_ = NULL;
+	Move_Command* move_command_ = NULL;
+
+	Input_Handler input_handler_;
+
+	SDL_Event event_;
 
 	SDL_Rect camera_;
 

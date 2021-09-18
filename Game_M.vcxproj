@@ -19,11 +19,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source Files\Command.cpp" />
     <ClCompile Include="Source Files\Counter_Component.cpp" />
     <ClCompile Include="Source Files\Create.cpp" />
     <ClCompile Include="Source Files\Graphic_Component.cpp" />
     <ClCompile Include="Source Files\File_Manager.cpp" />
+    <ClCompile Include="Source Files\Input_Handler.cpp" />
     <ClCompile Include="Source Files\Kill_Component.cpp" />
+    <ClCompile Include="Source Files\Move_Command.cpp" />
+    <ClCompile Include="Source Files\Move_Component.cpp" />
     <ClCompile Include="Source Files\Position_Component.cpp" />
     <ClCompile Include="Source Files\Testing.cpp" />
     <ClCompile Include="Source Files\Texture.cpp" />
@@ -38,6 +42,9 @@
     <ClCompile Include="Source Files\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header Files\Command.h" />
+    <ClInclude Include="Header Files\Input_Handler.h" />
+    <ClInclude Include="Header Files\Move_Command.h" />
     <ClInclude Include="Header Files\Component.h" />
     <ClInclude Include="Header Files\Component_def.h" />
     <ClInclude Include="Header Files\Constants.h" />
@@ -51,6 +58,7 @@
     <ClInclude Include="Header Files\Kill_Component.h" />
     <ClInclude Include="Header Files\Manager.h" />
     <ClInclude Include="Header Files\Manager_def.h" />
+    <ClInclude Include="Header Files\Move_Component.h" />
     <ClInclude Include="Header Files\Physics_Component.h" />
     <ClInclude Include="Header Files\Position_Component.h" />
     <ClInclude Include="Header Files\Texture.h" />

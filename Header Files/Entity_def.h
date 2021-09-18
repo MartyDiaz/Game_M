@@ -45,7 +45,10 @@ private:
 	// Manager that owns this entity
 	Manager& manager_;
 
+	// Components are stored here
 	std::vector<std::unique_ptr<Component>> components;
+	
+	// Entities are destroyed during manager.refresh()
 	bool alive_{ true };
 
 	/*

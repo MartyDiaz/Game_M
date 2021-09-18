@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(int screen_width, int screen_height) : camera_{400, 400, screen_width, screen_height}
+Game::Game(int screen_width, int screen_height) : camera_{ 400, 400, screen_width, screen_height }
 {
 	std::string tex_folder = "assets"; // Path to folder where Game will create 
 	                                   // texture objects from image files
@@ -8,7 +8,7 @@ Game::Game(int screen_width, int screen_height) : camera_{400, 400, screen_width
 	window_ = Create::window(Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT);
 	renderer_ = Create::renderer(window_);
 	texture_storage_ = Create::texture_storage(renderer_, tex_folder); //Unique Pointer
-	
+
 	ft_step = 0.1f; // Time step used when updating enitities 
 	last_ft = 0.f; // the amount of time passed for the recent frame
 	ft_slice = 0.1f; // time window
@@ -75,14 +75,14 @@ void Game::run()
 
 void Game::input_phase()
 {
-	SDL_Event e;
-
-	while (SDL_PollEvent(&e) != 0)
+	while (SDL_PollEvent(&event_) != 0)
 	{
-		if (e.type == SDL_QUIT)
+		if (event_.type == SDL_QUIT)
 		{
 			quit_ = true;
 		}
+		move_command_ = input_handler_.handle_move_input(event_);
+
 	}
 }
 
