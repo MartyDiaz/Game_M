@@ -10,8 +10,9 @@ class Move_Command : Command
 {
 
 public:
+
 	Vector2D direction_;
 
-	void execute(const Entity& entity) override;
+	void execute(Entity& entity) override;
 
 };

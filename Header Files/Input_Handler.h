@@ -6,10 +6,9 @@
 class Input_Handler
 {
 
-private:
-	std::unique_ptr<Move_Command> move_command_;
-
 public:
+	std::unique_ptr<Move_Command> move_command_;
+	
 	Input_Handler();
 
 	Move_Command* handle_move_input(SDL_Event& event);

@@ -44,9 +44,11 @@ void Game::run()
 
 	//Makeing test entity
 	auto& test_entity(manager_.add_entity());
+	test_entity.add_group(entity_groups::move_command_group);
 
 	test_entity.add_component<Transform_Component>(500.0, 500.0);
 	test_entity.add_component<Graphic_Component>(&test_entity.get_component<Transform_Component>(), texture_storage_.get(), "ship3", camera_);
+	test_entity.add_component<Move_Component>(&test_entity.get_component < Transform_Component >());
 
 	//SDL_Event e;
 
@@ -81,7 +83,18 @@ void Game::input_phase()
 		{
 			quit_ = true;
 		}
-		move_command_ = input_handler_.handle_move_input(event_);
+
+		movement_command_ = input_handler_.handle_move_input(event_);
+
+		//***********************************************************
+		// MOVE ALL ENTITIES HERE??? I THINK SO
+		//***********************************************************
+		auto& entities_to_move(manager_.get_entities_by_group(move_command_group));
+
+		for (auto& entity : entities_to_move)
+		{
+			movement_command_->execute(*entity);
+		}
 
 	}
 }

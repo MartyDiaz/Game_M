@@ -1,11 +1,10 @@
 #include "Move_Component.h"
 
-Move_Component::Move_Component()
+Move_Component::Move_Component(Transform_Component* transform) : transform_{transform}
 {
-	transform = &entity_->get_component<Transform_Component>();
 }
 
 void Move_Component::move(const Vector2D& direction)
 {
-	transform->velocity_ += direction;
+	transform_->velocity_ += direction;
 }

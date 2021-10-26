@@ -1,7 +1,7 @@
 #include "Move_Command.h"
 
 
-void Move_Command::execute(const Entity& entity)
+void Move_Command::execute(Entity& entity)
 {
 	Move_Component* move_component;
 	move_component = &entity.get_component<Move_Component>();

@@ -7,5 +7,7 @@ private:
 
 public:
 
-	virtual void execute(const Entity& entity);
+	virtual void execute(Entity& entity);
+
+	virtual ~Command();
 };

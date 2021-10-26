@@ -10,6 +10,7 @@
 #include "Kill_Component.h"
 #include "Transform_Component.h"
 #include "Graphic_Component.h"
+#include "Move_Component.h"
 #include "File_Manager.h"
 #include "Texture.h"
 #include "Texture_Storage.h"
@@ -40,7 +41,7 @@ private:
 	
 	SDL_Window* window_ = NULL;
 	SDL_Renderer* renderer_ = NULL;
-	Move_Command* move_command_ = NULL;
+	Move_Command* movement_command_ = NULL;
 
 	Input_Handler input_handler_;
 
@@ -49,6 +50,11 @@ private:
 	SDL_Rect camera_;
 
 	Manager manager_;
+
+	enum entity_groups : std::size_t
+	{
+		move_command_group
+	};
 
 
 public:

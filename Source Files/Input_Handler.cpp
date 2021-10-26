@@ -1,6 +1,6 @@
 #include "Input_Handler.h"
 
-Input_Handler::Input_Handler() :move_command_{ std::make_unique<Move_Command>() }
+Input_Handler::Input_Handler() : move_command_{ std::make_unique<Move_Command>() }
 {
 
 }
@@ -33,4 +33,5 @@ Move_Command* Input_Handler::handle_move_input(SDL_Event& event)
 			break;
 		}
 	}
+	return move_command_.get();
 }
