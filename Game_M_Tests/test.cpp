@@ -12,24 +12,24 @@ TEST(TestCaseName, TestName)
   EXPECT_TRUE(true);
 }
 
-TEST(File_Manager, get_CWD)
+TEST(FileManager, getCWD)
 {
-	std::string expected = "C:\\Users\\16264\\Documents\\GitHub\\Game_M\\x64\\Debug";
+	std::string expected = "C:\\Users\\marty\\source\\repos\\Game_M\\x64\\Debug";
 	std::string CWD = File_Manager::get_current_working_directory();
 	ASSERT_EQ(expected, CWD);
 }
 
 
 // Testing get files in folder
-TEST(File_Manager, get_files_non_relative)
+TEST(FileManager, getFilesNonRelative)
 {
 	std::vector<std::string> manager_list;
 	std::vector<std::string> test_list;
-	std::string path = "C:\\Users\\16264\\Documents\\GitHub\\Game_M\\temp test";
+	std::string path = "C:\\Users\\marty\\source\\repos\\Game_M\\temp test";
 
-	test_list.emplace_back("C:\\Users\\16264\\Documents\\GitHub\\Game_M\\temp test\\Test1.txt");
-	test_list.emplace_back("C:\\Users\\16264\\Documents\\GitHub\\Game_M\\temp test\\Test2.txt");
-	test_list.emplace_back("C:\\Users\\16264\\Documents\\GitHub\\Game_M\\temp test\\Test3.txt");
+	test_list.emplace_back("C:\\Users\\marty\\source\\repos\\Game_M\\temp test\\Test1.txt");
+	test_list.emplace_back("C:\\Users\\marty\\source\\repos\\Game_M\\temp test\\Test2.txt");
+	test_list.emplace_back("C:\\Users\\marty\\source\\repos\\Game_M\\temp test\\Test3.txt");
 
 
 	manager_list = File_Manager::get_files_in_folders(path, File_Manager::relative_files_opt::FILES_NOT_RELATIVE);
@@ -42,14 +42,14 @@ TEST(File_Manager, get_files_non_relative)
 	}
 }
 
-TEST(File_Manager, get_files_relative)
+TEST(FileManager, getFilesRelative)
 {
 	std::vector<std::string> manager_list;
 	std::vector<std::string> test_list;
 
-	test_list.emplace_back("C:\\Users\\16264\\Documents\\GitHub\\Game_M\\x64\\Debug\\..\\..\\temp test\\Test1.txt");
-	test_list.emplace_back("C:\\Users\\16264\\Documents\\GitHub\\Game_M\\x64\\Debug\\..\\..\\temp test\\Test2.txt");
-	test_list.emplace_back("C:\\Users\\16264\\Documents\\GitHub\\Game_M\\x64\\Debug\\..\\..\\temp test\\Test3.txt");
+	test_list.emplace_back("C:\\Users\\marty\\source\\repos\\Game_M\\x64\\Debug\\..\\..\\temp test\\Test1.txt");
+	test_list.emplace_back("C:\\Users\\marty\\source\\repos\\Game_M\\x64\\Debug\\..\\..\\temp test\\Test2.txt");
+	test_list.emplace_back("C:\\Users\\marty\\source\\repos\\Game_M\\x64\\Debug\\..\\..\\temp test\\Test3.txt");
 
 	std::string path = "..\\..\\temp test";
 
@@ -66,7 +66,7 @@ TEST(File_Manager, get_files_relative)
 
 }
 
-TEST(Vector2D_tests, addition)
+TEST(Vector2DTests, addition)
 {
 	Vector2D v1{ 0,0 };
 	Vector2D v2{ 5,10 };
@@ -76,7 +76,40 @@ TEST(Vector2D_tests, addition)
 	v3 = v1 + v2;
 
 	EXPECT_EQ(v3, expected_v);
+}
 
+TEST(Vector2DTests, substraction)
+{
+	Vector2D v1{ 10,10 };
+	Vector2D v2{ 5,10 };
+	Vector2D v3;
+	Vector2D expected_v{ 5,0 };
+
+	v3 = v1 - v2;
+
+	EXPECT_EQ(v3, expected_v);
+}
+
+TEST(Vector2DTests, additionEquals)
+{
+	Vector2D v1{ 2,2 };
+	Vector2D v2{ 5,10 };
+
+	Vector2D expected_v{ 7,12 };
+	v1 += v2;
+
+	EXPECT_EQ(v1, expected_v);
+}
+
+TEST(Vector2DTests, subtractionEquals)
+{
+	Vector2D v1{ 10,10 };
+	Vector2D v2{ 2,2 };
+
+	Vector2D expected_v{ 8,8 };
+	v1 -= v2;
+
+	EXPECT_EQ(v1, expected_v);
 }
 
 

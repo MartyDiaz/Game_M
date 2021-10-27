@@ -35,8 +35,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\16264\Documents\GitHub\Game_M\x64\Debug;$(LibraryPath)</LibraryPath>
-    <Microsoft-googletest-v140-windesktop-msvcstl-static-rt-dyn-Disable-gtest_main>true</Microsoft-googletest-v140-windesktop-msvcstl-static-rt-dyn-Disable-gtest_main>
+    <LibraryPath>C:\Users\marty\source\repos\Game_M\x64\Debug;$(LibraryPath)</LibraryPath>
+    <Microsoft-googletest-v140-windesktop-msvcstl-static-rt-dyn-Disable-gtest_main>
+    </Microsoft-googletest-v140-windesktop-msvcstl-static-rt-dyn-Disable-gtest_main>
   </PropertyGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

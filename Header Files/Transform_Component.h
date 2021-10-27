@@ -3,6 +3,7 @@
 
 #include "Component.h"
 #include "Vector2D.h"
+#include "spdlog/spdlog.h"
 // Transorm_Component contains the position and velocity vector of an entity.
 // The position will change based on the velocity during the update method.
 // TODO:: Not sure if Transform_Component should have a width_ and height_.

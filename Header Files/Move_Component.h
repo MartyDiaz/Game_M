@@ -6,9 +6,9 @@
 
 struct Move_Component : Component
 {
-	Move_Component(Transform_Component* transform);
-
 	Transform_Component* transform_;
+	
+	Move_Component(Transform_Component* transform);
 
 	void move(const Vector2D& direction);
 

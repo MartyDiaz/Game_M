@@ -9,9 +9,9 @@ Game::Game(int screen_width, int screen_height) : camera_{ 400, 400, screen_widt
 	renderer_ = Create::renderer(window_);
 	texture_storage_ = Create::texture_storage(renderer_, tex_folder); //Unique Pointer
 
-	ft_step = 0.1f; // Time step used when updating enitities 
+	ft_step = 1.f; // Time step used when updating enitities 
 	last_ft = 0.f; // the amount of time passed for the recent frame
-	ft_slice = 0.1f; // time window
+	ft_slice = 1.f; // time window
 	current_slice = 0.f; // time window for the recent frame.
 }
 
@@ -44,13 +44,11 @@ void Game::run()
 
 	//Makeing test entity
 	auto& test_entity(manager_.add_entity());
-	test_entity.add_group(entity_groups::move_command_group);
 
-	test_entity.add_component<Transform_Component>(500.0, 500.0);
+	test_entity.add_component<Transform_Component>(1000.0, 750.0);
 	test_entity.add_component<Graphic_Component>(&test_entity.get_component<Transform_Component>(), texture_storage_.get(), "ship3", camera_);
-	test_entity.add_component<Move_Component>(&test_entity.get_component < Transform_Component >());
-
-	//SDL_Event e;
+	test_entity.add_component<Move_Component>(&test_entity.get_component<Transform_Component>());
+	test_entity.add_group(entity_groups::move_command_group);
 
 	while (!quit)
 	{
