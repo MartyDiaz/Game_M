@@ -23,7 +23,18 @@ Transform_Component::Transform_Component(const float& x_pos, const float& y_pos,
 void Transform_Component::update(float mFT)
 {
 	position_.x_ += velocity_.x_ * mFT;
+	if ((position_.x_ < 0) || (position_.x_ > Constants::SCREEN_WIDTH))
+	{
+		//Move back
+		position_.x_ -= velocity_.x_;
+	}
+
 	position_.y_ += velocity_.y_ * mFT;
+	if ((position_.y_ < 0) || (position_.y_ > Constants::SCREEN_HEIGHT))
+	{
+		//Move back
+		position_.y_ -= velocity_.y_;
+	}
 	//spdlog::info("Position is {0} {1}.", position_.x_, position_.y_);
 	//spdlog::info("Velocity is {0} {1}.", velocity_.x_, velocity_.y_);
 }
