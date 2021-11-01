@@ -51,6 +51,8 @@ private:
 
 	Manager manager_;
 
+	Entity* player_entity;
+
 	enum entity_groups : std::size_t
 	{
 		move_command_group
@@ -77,6 +79,8 @@ public:
 	void draw_phase();
 
 	void movement_input();
+
+	void camera_update();
 
 	int const get_window_width();
 

@@ -1,6 +1,6 @@
 #include "Game.h"
 
-Game::Game(int screen_width, int screen_height) : camera_{ 400, 400, screen_width, screen_height }
+Game::Game(int screen_width, int screen_height) : camera_{ 0, 0, Constants::SCREEN_WIDTH, Constants::SCREEN_HEIGHT }
 {
 	std::string tex_folder = "assets"; // Path to folder where Game will create 
 	                                   // texture objects from image files
@@ -13,6 +13,7 @@ Game::Game(int screen_width, int screen_height) : camera_{ 400, 400, screen_widt
 	last_ft = 0.f; // the amount of time passed for the recent frame
 	ft_slice = 1.f; // time window
 	current_slice = 0.f; // time window for the recent frame.
+
 }
 
 Game::~Game()
@@ -43,12 +44,23 @@ void Game::run()
 	bool quit = false;
 
 	//Makeing test entity
+	auto& back_entity(manager_.add_entity());
 	auto& test_entity(manager_.add_entity());
 
+	// back ground picture
+	back_entity.add_component<Transform_Component>(0, 0);
+	back_entity.add_component<Graphic_Component>(&back_entity.get_component<Transform_Component>(), texture_storage_.get(), "space", camera_);
+
+	//player enitity
 	test_entity.add_component<Transform_Component>(1000.0, 750.0);
 	test_entity.add_component<Graphic_Component>(&test_entity.get_component<Transform_Component>(), texture_storage_.get(), "ship3", camera_);
 	test_entity.add_component<Move_Component>(&test_entity.get_component<Transform_Component>());
 	test_entity.add_group(entity_groups::move_command_group);
+	player_entity = &test_entity;
+
+	
+
+
 
 	while (!quit)
 	{
@@ -93,6 +105,7 @@ void Game::update_phase()
 		manager_.refresh();
 		manager_.update(ft_step);
 	}
+	camera_update();
 }
 
 void Game::draw_phase()
@@ -136,5 +149,31 @@ void Game::movement_input()
 			movement_command_->execute(*entity);
 		}
 		movement_command_->zero();
+	}
+}
+
+void Game::camera_update()
+{
+	camera_.x = player_entity->get_component<Transform_Component>()
+		.position_.x_ - Constants::SCREEN_WIDTH/2;
+	
+	camera_.y = player_entity->get_component<Transform_Component>()
+		.position_.y_ - Constants::SCREEN_HEIGHT/2;
+
+	if (camera_.x < 0)
+	{
+		camera_.x = 0;
+	}
+	if (camera_.y < 0)
+	{
+		camera_.y = 0;
+	}
+	if (camera_.x > camera_.w)
+	{
+		camera_.x = camera_.w;
+	}
+	if (camera_.y > camera_.h)
+	{
+		camera_.y = camera_.h;
 	}
 }
