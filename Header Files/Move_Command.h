@@ -15,4 +15,8 @@ public:
 
 	void execute(Entity& entity) override;
 
+	bool not_zero();
+
+	void zero();
+
 };

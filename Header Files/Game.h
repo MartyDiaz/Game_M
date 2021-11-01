@@ -76,6 +76,8 @@ public:
 
 	void draw_phase();
 
+	void movement_input();
+
 	int const get_window_width();
 
 	int const get_window_height();

@@ -81,19 +81,7 @@ void Game::input_phase()
 		{
 			quit_ = true;
 		}
-
-		movement_command_ = input_handler_.handle_move_input(event_);
-
-		//***********************************************************
-		// MOVE ALL ENTITIES HERE??? I THINK SO
-		//***********************************************************
-		auto& entities_to_move(manager_.get_entities_by_group(move_command_group));
-
-		for (auto& entity : entities_to_move)
-		{
-			movement_command_->execute(*entity);
-		}
-
+		movement_input();
 	}
 }
 
@@ -133,4 +121,20 @@ int const Game::get_window_width()
 int const Game::get_window_height()
 {
 	return Constants::SCREEN_HEIGHT;
+}
+
+void Game::movement_input()
+{
+	movement_command_ = input_handler_.handle_move_input(event_);
+
+	if (movement_command_->not_zero())
+	{
+		auto& entities_to_move(manager_.get_entities_by_group(move_command_group));
+
+		for (auto& entity : entities_to_move)
+		{
+			movement_command_->execute(*entity);
+		}
+		movement_command_->zero();
+	}
 }
