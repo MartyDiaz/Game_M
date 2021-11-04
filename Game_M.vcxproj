@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source Files\Collider_Component.cpp" />
+    <ClCompile Include="Source Files\Collision.cpp" />
     <ClCompile Include="Source Files\Command.cpp" />
     <ClCompile Include="Source Files\Counter_Component.cpp" />
     <ClCompile Include="Source Files\Create.cpp" />
@@ -42,6 +44,8 @@
     <ClCompile Include="Source Files\Vector2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Header Files\Collider_Component.h" />
+    <ClInclude Include="Header Files\Collision.h" />
     <ClInclude Include="Header Files\Command.h" />
     <ClInclude Include="Header Files\Input_Handler.h" />
     <ClInclude Include="Header Files\Move_Command.h" />

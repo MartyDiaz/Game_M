@@ -11,6 +11,7 @@
 #include "Transform_Component.h"
 #include "Graphic_Component.h"
 #include "Move_Component.h"
+#include "Collider_Component.h"
 #include "File_Manager.h"
 #include "Texture.h"
 #include "Texture_Storage.h"
@@ -51,7 +52,7 @@ private:
 
 	Manager manager_;
 
-	Entity* player_entity;
+	Entity* player_entity; // For camera centering and easily getting player collider
 
 	enum entity_groups : std::size_t
 	{

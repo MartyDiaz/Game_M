@@ -45,22 +45,30 @@ void Game::run()
 
 	//Makeing test entity
 	auto& back_entity(manager_.add_entity());
-	auto& test_entity(manager_.add_entity());
-
+    auto& test_entity(manager_.add_entity());
+    auto& test_entity2(manager_.add_entity());
+	
+	
 	// back ground picture
 	back_entity.add_component<Transform_Component>(0, 0);
 	back_entity.add_component<Graphic_Component>(&back_entity.get_component<Transform_Component>(), texture_storage_.get(), "space", camera_);
 
 	//player enitity
 	test_entity.add_component<Transform_Component>(1000.0, 750.0);
+	test_entity.add_component<Collider_Component>(&test_entity.get_component<Transform_Component>());
 	test_entity.add_component<Graphic_Component>(&test_entity.get_component<Transform_Component>(), texture_storage_.get(), "ship3", camera_);
 	test_entity.add_component<Move_Component>(&test_entity.get_component<Transform_Component>());
 	test_entity.add_group(entity_groups::move_command_group);
 	player_entity = &test_entity;
 
+	//player entity2
+	test_entity2.add_component<Transform_Component>(1000.0, 900.0);
+	test_entity2.add_component<Collider_Component>(&test_entity2.get_component<Transform_Component>());
+	test_entity2.add_component<Graphic_Component>(&test_entity2.get_component<Transform_Component>(), texture_storage_.get(), "ship3", camera_);
+	test_entity2.add_component<Move_Component>(&test_entity2.get_component<Transform_Component>());
+	//test_entity2.add_group(entity_groups::move_command_group);
+	//player_entity2 = &test_entity;
 	
-
-
 
 	while (!quit)
 	{
